@@ -23,6 +23,10 @@ const description = computed(() =>
 const category = computed(() =>
   selectedAttraction.value ? t(`categories.${selectedAttraction.value.category}`) : '',
 )
+const imageSrc = computed(() => selectedAttraction.value?.image?.src ?? '')
+const imageAlt = computed(() =>
+  selectedAttraction.value?.image ? localized(selectedAttraction.value.image.alt, locale.value) : '',
+)
 const sourceLabel = computed(() =>
   selectedAttraction.value ? localized(selectedAttraction.value.source.label, locale.value) : '',
 )
@@ -42,6 +46,7 @@ const reviewedText = computed(() => {
 
     <h2 class="tirhal-panel-title">{{ name }}</h2>
     <p class="tirhal-attraction-cat">{{ category }}</p>
+    <img v-if="imageSrc" class="tirhal-attraction-image" :src="imageSrc" :alt="imageAlt" />
     <p class="tirhal-panel-intro">{{ description }}</p>
 
     <dl class="tirhal-attraction-meta">
