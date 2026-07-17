@@ -1,0 +1,481 @@
+/* =============================================================================
+   Tirhal — global stylesheet
+   -----------------------------------------------------------------------------
+   This is the ONLY place Tirhal visual styles live. Component files use stable,
+   feature-prefixed global class names and contain no <style> blocks.
+
+   Layout uses CSS LOGICAL PROPERTIES by default (margin-inline, padding-block,
+   inset-inline-*, border-inline-*, inline-size, block-size). Physical left/right
+   properties are avoided so the UI mirrors correctly for Arabic (dir="rtl")
+   without duplicate stylesheets. The OpenLayers map canvas and geographic
+   geometry are NEVER mirrored — only UI chrome reacts to direction.
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1. Design tokens (Material Design 3-inspired, light scheme)
+   ------------------------------------------------------------------------- */
+:root {
+  /* Color roles */
+  --md-sys-color-primary: #3b6ea5;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d6e3ff;
+  --md-sys-color-on-primary-container: #001b3e;
+
+  --md-sys-color-secondary: #586071;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #dde1f9;
+  --md-sys-color-on-secondary-container: #151b2c;
+
+  --md-sys-color-surface: #fdfcff;
+  --md-sys-color-on-surface: #1a1c1e;
+  --md-sys-color-surface-variant: #e0e2ec;
+  --md-sys-color-on-surface-variant: #44474e;
+
+  --md-sys-color-surface-container: #eceef4;
+  --md-sys-color-surface-container-high: #e6e8ee;
+  --md-sys-color-surface-container-highest: #e0e2e9;
+
+  --md-sys-color-background: #fdfcff;
+  --md-sys-color-on-background: #1a1c1e;
+
+  --md-sys-color-outline: #74777f;
+  --md-sys-color-outline-variant: #c4c6cf;
+
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+
+  /* Elevation (M3-style ambient + key shadows) */
+  --md-sys-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  /* Typography */
+  --md-sys-typescale-font-family: system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Noto Sans Arabic', 'Helvetica Neue', Arial, sans-serif;
+  --md-sys-typescale-body-large: 1rem;
+  --md-sys-typescale-body-medium: 0.875rem;
+  --md-sys-typescale-label-large: 0.875rem;
+  --md-sys-typescale-title-large: 1.375rem;
+  --md-sys-typescale-title-medium: 1rem;
+  --md-sys-typescale-headline-small: 1.5rem;
+
+  /* Shape */
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-full: 999px;
+
+  /* State layer / focus */
+  --md-sys-focus-ring: var(--md-sys-color-primary);
+
+  /* Layout */
+  --tirhal-panel-inline-size: 24rem;
+  --tirhal-header-block-size: 4rem;
+}
+
+/* ----------------------------------------------------------------------------
+   2. Reset
+   ------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  block-size: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: var(--md-sys-typescale-body-large);
+  line-height: 1.5;
+  color: var(--md-sys-color-on-background);
+  background-color: var(--md-sys-color-background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+a {
+  color: var(--md-sys-color-primary);
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Visible, consistent focus indicator for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--md-sys-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--md-sys-shape-corner-small);
+}
+
+/* ----------------------------------------------------------------------------
+   3. App shell layout
+   ------------------------------------------------------------------------- */
+/* Full-screen grid: map area first, information panel second. Because the grid
+   inherits document direction, the panel lands at the logical inline-end —
+   right in English (ltr) and left in Arabic (rtl) — with no JS repositioning. */
+.tirhal-app {
+  display: grid;
+  grid-template-columns: 1fr var(--tirhal-panel-inline-size);
+  grid-template-rows: var(--tirhal-header-block-size) 1fr;
+  grid-template-areas:
+    'header header'
+    'map panel';
+  block-size: 100dvh;
+  inline-size: 100%;
+  overflow: hidden;
+}
+
+.tirhal-app__header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: 1rem;
+  background-color: var(--md-sys-color-surface);
+  border-block-end: 1px solid var(--md-sys-color-outline-variant);
+  z-index: 2;
+}
+
+.tirhal-app__map {
+  grid-area: map;
+  position: relative;
+  min-block-size: 0;
+  min-inline-size: 0;
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.tirhal-app__panel {
+  grid-area: panel;
+  min-block-size: 0;
+  overflow-y: auto;
+  background-color: var(--md-sys-color-surface);
+  border-inline-start: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* Brand */
+.tirhal-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.tirhal-brand__name {
+  font-size: var(--md-sys-typescale-title-large);
+  font-weight: 700;
+  color: var(--md-sys-color-primary);
+}
+
+.tirhal-brand__tagline {
+  font-size: var(--md-sys-typescale-body-medium);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* ----------------------------------------------------------------------------
+   4. OpenLayers overrides
+   ------------------------------------------------------------------------- */
+/* OpenLayers generates DOM outside Vue ownership; style it here globally. */
+.ol-viewport {
+  /* Prevent the canvas from capturing page scroll focus unexpectedly. */
+  touch-action: none;
+}
+
+.ol-control {
+  /* Keep OL controls above the map canvas but below app chrome. */
+  z-index: 1;
+}
+
+.ol-control button {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  cursor: pointer;
+}
+
+.ol-control button:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+/* ----------------------------------------------------------------------------
+   4b. Map (SyriaMap, MapControls, MapStatusOverlay)
+   ------------------------------------------------------------------------- */
+.tirhal-map-wrap {
+  position: relative;
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+.tirhal-map {
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.tirhal-map-controls {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 3;
+}
+
+.tirhal-map-control-btn {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-1);
+  cursor: pointer;
+}
+
+.tirhal-map-control-btn:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.tirhal-map-control-btn:active {
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+
+.tirhal-map-status {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-start: 1rem;
+  max-inline-size: 60%;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-1);
+  font-size: var(--md-sys-typescale-body-medium);
+  z-index: 3;
+}
+
+.tirhal-map-status__label {
+  color: var(--md-sys-color-primary);
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+   4c. Panel system (DiscoveryPanel + sub-panels) and locale switcher
+   ------------------------------------------------------------------------- */
+.tirhal-panel {
+  padding: 1.25rem;
+}
+
+.tirhal-panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tirhal-panel-title {
+  font-size: var(--md-sys-typescale-headline-small);
+  font-weight: 700;
+  color: var(--md-sys-color-on-surface);
+}
+
+.tirhal-panel-subtitle {
+  font-size: var(--md-sys-typescale-title-medium);
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+  margin-block-start: 0.5rem;
+}
+
+.tirhal-panel-intro {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.tirhal-panel-hint {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-medium);
+}
+
+.tirhal-panel-meta {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-medium);
+}
+
+.tirhal-panel-empty {
+  color: var(--md-sys-color-on-surface-variant);
+  font-style: italic;
+}
+
+.tirhal-panel-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tirhal-panel-back:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.tirhal-attraction-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tirhal-attraction-item {
+  inline-size: 100%;
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  cursor: pointer;
+}
+
+.tirhal-attraction-item:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.tirhal-attraction-item__name {
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface);
+}
+
+.tirhal-attraction-item__cat {
+  font-size: var(--md-sys-typescale-body-medium);
+  color: var(--md-sys-color-primary);
+}
+
+.tirhal-attraction-cat {
+  display: inline-block;
+  color: var(--md-sys-color-primary);
+  font-weight: 600;
+  font-size: var(--md-sys-typescale-label-large);
+}
+
+.tirhal-attraction-meta {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tirhal-attraction-meta__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-block-start: 1px solid var(--md-sys-color-outline-variant);
+  padding-block-start: 0.5rem;
+}
+
+.tirhal-attraction-meta dt {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.tirhal-attraction-meta dd {
+  margin: 0;
+  color: var(--md-sys-color-on-surface);
+  text-align: end;
+}
+
+.tirhal-attraction-locate {
+  align-self: flex-start;
+  margin-block-start: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tirhal-attraction-locate:hover {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.tirhal-locale {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.tirhal-locale__btn {
+  padding: 0.4rem 0.85rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tirhal-locale__btn--active {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   5. Reduced motion
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
