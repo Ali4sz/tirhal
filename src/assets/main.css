@@ -401,6 +401,15 @@ button {
   font-size: var(--md-sys-typescale-label-large);
 }
 
+.tirhal-attraction-image {
+  inline-size: 100%;
+  block-size: 12rem;
+  display: block;
+  object-fit: cover;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container);
+}
+
 .tirhal-attraction-meta {
   margin: 0;
   display: flex;
