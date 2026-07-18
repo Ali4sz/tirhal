@@ -15,36 +15,44 @@
    1. Design tokens (Material Design 3-inspired, light scheme)
    ------------------------------------------------------------------------- */
 :root {
-  /* Color roles */
-  --md-sys-color-primary: #3b6ea5;
+  /* Color roles — warm desert scheme */
+  --md-sys-color-primary: #c75b39;
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #d6e3ff;
-  --md-sys-color-on-primary-container: #001b3e;
+  --md-sys-color-primary-container: #fad9c7;
+  --md-sys-color-on-primary-container: #3a0b00;
+  --md-sys-color-primary-hover: #a8482b;
 
-  --md-sys-color-secondary: #586071;
+  --md-sys-color-secondary: #8b5a2b;
   --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #dde1f9;
-  --md-sys-color-on-secondary-container: #151b2c;
+  --md-sys-color-secondary-container: #edd5bb;
+  --md-sys-color-on-secondary-container: #2d1a07;
 
-  --md-sys-color-surface: #fdfcff;
-  --md-sys-color-on-surface: #1a1c1e;
-  --md-sys-color-surface-variant: #e0e2ec;
-  --md-sys-color-on-surface-variant: #44474e;
+  --md-sys-color-tertiary: #d4a574;
+  --md-sys-color-tertiary-container: #f5e8d5;
+  --md-sys-color-on-tertiary-container: #2a1e0a;
 
-  --md-sys-color-surface-container: #eceef4;
-  --md-sys-color-surface-container-high: #e6e8ee;
-  --md-sys-color-surface-container-highest: #e0e2e9;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #2a1810;
+  --md-sys-color-surface-variant: #faeed9;
+  --md-sys-color-on-surface-variant: #6b5440;
 
-  --md-sys-color-background: #fdfcff;
-  --md-sys-color-on-background: #1a1c1e;
+  --md-sys-color-surface-container: #f5e8d5;
+  --md-sys-color-surface-container-high: #efdac0;
+  --md-sys-color-surface-container-highest: #e8d0b0;
 
-  --md-sys-color-outline: #74777f;
-  --md-sys-color-outline-variant: #c4c6cf;
+  --md-sys-color-background: #fff8ee;
+  --md-sys-color-on-background: #2a1810;
 
-  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-outline: #d4b896;
+  --md-sys-color-outline-variant: #e8d5bc;
+
+  --md-sys-color-error: #c0392b;
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
+
+  --tirhal-color-accent: #e89b3e;
+  --tirhal-color-text-tertiary: #9c8367;
 
   /* Elevation (M3-style ambient + key shadows) */
   --md-sys-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
@@ -66,6 +74,11 @@
   --md-sys-shape-corner-medium: 12px;
   --md-sys-shape-corner-large: 16px;
   --md-sys-shape-corner-full: 999px;
+
+  /* Motion (M3 standard easing/durations) */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-duration-short: 150ms;
+  --md-sys-motion-duration-medium: 250ms;
 
   /* State layer / focus */
   --md-sys-focus-ring: var(--md-sys-color-primary);
@@ -153,6 +166,7 @@ button {
   block-size: 100dvh;
   inline-size: 100%;
   overflow: hidden;
+  background-color: var(--md-sys-color-background);
 }
 
 .tirhal-app__header {
@@ -163,7 +177,7 @@ button {
   gap: 1rem;
   padding-inline: 1rem;
   background-color: var(--md-sys-color-surface);
-  border-block-end: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-1);
   z-index: 2;
 }
 
@@ -175,12 +189,25 @@ button {
   background-color: var(--md-sys-color-surface-container);
 }
 
+/* The panel grid track is a transparent gutter; the card floats inside it,
+   detached from the viewport edges, per the M3 docked-card pattern. */
 .tirhal-app__panel {
   grid-area: panel;
   min-block-size: 0;
+  padding: 1rem;
+  padding-inline-start: 0.5rem;
+  background-color: transparent;
+  display: flex;
+}
+
+.tirhal-app__panel-card {
+  flex: 1;
+  min-block-size: 0;
   overflow-y: auto;
   background-color: var(--md-sys-color-surface);
-  border-inline-start: 1px solid var(--md-sys-color-outline-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-large);
+  box-shadow: var(--md-sys-elevation-2);
 }
 
 /* Brand */
@@ -221,6 +248,8 @@ button {
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-small);
   cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short)
+    var(--md-sys-motion-easing-standard);
 }
 
 .ol-control button:hover {
@@ -265,6 +294,9 @@ button {
   border: 1px solid var(--md-sys-color-outline-variant);
   box-shadow: var(--md-sys-elevation-1);
   cursor: pointer;
+  transition:
+    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
 .tirhal-map-control-btn:hover {
@@ -330,7 +362,7 @@ button {
 }
 
 .tirhal-panel-meta {
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--tirhal-color-text-tertiary);
   font-size: var(--md-sys-typescale-body-medium);
 }
 
@@ -351,6 +383,8 @@ button {
   color: var(--md-sys-color-primary);
   font-weight: 600;
   cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short)
+    var(--md-sys-motion-easing-standard);
 }
 
 .tirhal-panel-back:hover {
@@ -378,10 +412,14 @@ button {
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
   cursor: pointer;
+  transition:
+    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
 .tirhal-attraction-item:hover {
   background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-1);
 }
 
 .tirhal-attraction-item__name {
@@ -445,33 +483,61 @@ button {
   color: var(--md-sys-color-on-primary);
   font-weight: 600;
   cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short)
+    var(--md-sys-motion-easing-standard);
 }
 
 .tirhal-attraction-locate:hover {
-  background-color: var(--md-sys-color-primary-container);
-  color: var(--md-sys-color-on-primary-container);
+  background-color: var(--md-sys-color-primary-hover);
 }
 
+/* Equal-width buttons + an absolutely positioned pill that slides between them.
+   The slide distance is one button width plus the gap; in RTL the second button
+   sits visually to the left, so the translation is negated. */
 .tirhal-locale {
+  --tirhal-locale-btn-size: 4.25rem;
+  --tirhal-locale-gap: 0.25rem;
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
-  gap: 0.25rem;
+  gap: var(--tirhal-locale-gap);
   padding: 0.25rem;
   background-color: var(--md-sys-color-surface-container);
   border-radius: var(--md-sys-shape-corner-full);
 }
 
+.tirhal-locale__indicator {
+  position: absolute;
+  inset-block: 0.25rem;
+  inset-inline-start: 0.25rem;
+  inline-size: var(--tirhal-locale-btn-size);
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-primary);
+  transition: transform var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
+  z-index: -1;
+}
+
+.tirhal-locale--ar .tirhal-locale__indicator {
+  transform: translateX(calc(var(--tirhal-locale-btn-size) + var(--tirhal-locale-gap)));
+}
+
+[dir='rtl'] .tirhal-locale--ar .tirhal-locale__indicator {
+  transform: translateX(calc(-1 * (var(--tirhal-locale-btn-size) + var(--tirhal-locale-gap))));
+}
+
 .tirhal-locale__btn {
-  padding: 0.4rem 0.85rem;
+  inline-size: var(--tirhal-locale-btn-size);
+  padding-block: 0.4rem;
   border: none;
   border-radius: var(--md-sys-shape-corner-full);
   background-color: transparent;
   color: var(--md-sys-color-on-surface);
   font-weight: 600;
   cursor: pointer;
+  transition: color var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
 }
 
 .tirhal-locale__btn--active {
-  background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
 }
 
