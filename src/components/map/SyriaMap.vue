@@ -19,7 +19,7 @@ import { useI18n } from 'vue-i18n'
 import OlMap from 'ol/Map'
 import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile'
-import OSM from 'ol/source/OSM'
+import XYZ from 'ol/source/XYZ'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
@@ -72,10 +72,14 @@ const govByPcode = new Map<string, Governorate>(governorates.map((g) => [g.pcode
 const ariaLabel = computed(() => t('a11y.mapRegion'))
 
 const selectedName = computed(() =>
-  selectedGovernorateId.value ? govByPcode.get(selectedGovernorateId.value)?.name[locale.value] ?? null : null,
+  selectedGovernorateId.value
+    ? (govByPcode.get(selectedGovernorateId.value)?.name[locale.value] ?? null)
+    : null,
 )
 const hoverName = computed(() =>
-  hoverGovernorateId.value ? govByPcode.get(hoverGovernorateId.value)?.name[locale.value] ?? null : null,
+  hoverGovernorateId.value
+    ? (govByPcode.get(hoverGovernorateId.value)?.name[locale.value] ?? null)
+    : null,
 )
 
 // ---------------------------------------------------------------------------
@@ -225,9 +229,23 @@ onMounted(() => {
   markerSource = new VectorSource()
   markerLayer = new VectorLayer({ source: markerSource, style: markerStyle })
 
-  // Dev basemap (OpenStreetMap). A production provider must be chosen and
-  // approved before release (see plan: Map-provider gate).
-  const osmLayer = new TileLayer({ source: new OSM() })
+  // Basemap: CARTO Positron (no labels). Boundary-free so our governorate
+  // borders are the sole authoritative lines on screen.
+  // Attribution required by CARTO (terms: carto.com/legal) and ODbL.
+  const osmLayer = new TileLayer({
+    source: new XYZ({
+      urls: [
+        'https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+        'https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+        'https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+        'https://d.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+      ],
+      attributions:
+        '© <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> · ' +
+        '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>',
+      maxZoom: 20,
+    }),
+  })
 
   map = new OlMap({
     target: mapEl.value ?? undefined,
