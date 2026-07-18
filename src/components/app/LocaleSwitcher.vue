@@ -19,7 +19,13 @@ function labelFor(code: AppLocale): string {
 </script>
 
 <template>
-  <div class="tirhal-locale" role="group" :aria-label="t('localeSwitcher.label')">
+  <div
+    class="tirhal-locale"
+    :class="{ 'tirhal-locale--ar': locale === 'ar' }"
+    role="group"
+    :aria-label="t('localeSwitcher.label')"
+  >
+    <span class="tirhal-locale__indicator" aria-hidden="true" />
     <button
       v-for="code in supportedLocales"
       :key="code"
