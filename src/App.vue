@@ -22,7 +22,9 @@ const panelRegionLabel = t('a11y.panelRegion')
     </main>
 
     <aside class="tirhal-app__panel" :aria-label="panelRegionLabel">
-      <DiscoveryPanel />
+      <div class="tirhal-app__panel-card">
+        <DiscoveryPanel />
+      </div>
     </aside>
   </div>
 </template>
