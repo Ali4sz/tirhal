@@ -1,240 +1,80 @@
 /**
- * Seed attraction records for Tirhal's four launch governorates.
+ * JSON-backed attraction catalog for Tirhal's four launch governorates.
  *
- * ⚠️ SEED DATA — NOT YET EDITORIALLY APPROVED.
- * These records exist so the discovery flow (map markers, lists, detail panels)
- * can be built and verified end-to-end. Coordinates are approximate (city/
- * site-center level) and content is representative. Before release they must be
- * replaced by curated, source-attributed, reviewed records per the plan's
- * content/licensing gate (Task 1). The `source` field flags this status.
+ * Seed records remain intentionally marked as pending editorial review. This
+ * adapter validates the untyped JSON at the domain boundary so invalid content
+ * cannot silently break the map, list, or detail views.
  */
 
-import type { Attraction, SourceRef } from '@/types/tourism'
+import records from '@/data/attractions.json'
+import type { Attraction, AttractionCategory, ImageMeta, LocalizedText, SourceRef } from '@/types/tourism'
 
-const SEED_SOURCE: SourceRef = {
-  label: {
-    en: 'Representative seed data — pending editorial review',
-    ar: 'بيانات أولية تمهيدية — بانتظار المراجعة التحريرية',
-  },
-  note: 'Coordinates approximate; replace with approved curated content before release.',
+const CATEGORIES = new Set<AttractionCategory>([
+  'historical',
+  'religious',
+  'museum',
+  'nature',
+  'landmark',
+  'market',
+  'archaeology',
+])
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
-const SEED_REVIEWED_ON = '2026-07-15'
+function isLocalizedText(value: unknown): value is LocalizedText {
+  return isRecord(value) && typeof value.en === 'string' && typeof value.ar === 'string'
+}
 
-export const attractions: readonly Attraction[] = [
-  // ---------------------------------------------------------------- Damascus
-  {
-    id: 'dam-umayyad-mosque',
-    governorateId: 'SY01',
-    name: { en: 'Umayyad Mosque', ar: 'الجامع الأموي' },
-    description: {
-      en: 'A major early Islamic place of worship in the old city of Damascus, known for its vast courtyard and mosaic work.',
-      ar: 'مسجد كبير من أوائل مساجد الإسلام في مدينة دمشق القديمة، يتميّز بفسحته الواسعة وأعمال الفسيفساء.',
-    },
-    category: 'religious',
-    coordinate: { lon: 36.3047, lat: 33.5118 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'dam-citadel',
-    governorateId: 'SY01',
-    name: { en: 'Citadel of Damascus', ar: 'قلعة دمشق' },
-    description: {
-      en: 'A historic fortified citadel occupying a prominent position in the center of old Damascus.',
-      ar: 'قلعة تاريخية محصّنة تتوسط موقعًا بارزًا في قلب دمشق القديمة.',
-    },
-    category: 'historical',
-    coordinate: { lon: 36.293, lat: 33.5115 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'dam-hamidiyah-souq',
-    governorateId: 'SY01',
-    name: { en: 'Al-Hamidiyah Souq', ar: 'سوق الحميدية' },
-    description: {
-      en: 'A long covered market street leading from the old city toward the Umayyad Mosque.',
-      ar: 'شارع سوق مسقوف طويل يمتد من المدينة القديمة باتجاه الجامع الأموي.',
-    },
-    category: 'market',
-    coordinate: { lon: 36.3015, lat: 33.5095 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'dam-azm-palace',
-    governorateId: 'SY01',
-    name: { en: 'Azm Palace', ar: 'قصر العظم' },
-    description: {
-      en: 'An 18th-century Ottoman-era residence in the old city, later adapted as a museum of Damascene life.',
-      ar: 'مقرّ سكني من العهد العثماني في القرن الثامن عشر، حُوّل لاحقًا إلى متحف للحياة الدمشقية.',
-    },
-    category: 'museum',
-    coordinate: { lon: 36.296, lat: 33.5108 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
+function isSourceRef(value: unknown): value is SourceRef {
+  return (
+    isRecord(value) &&
+    isLocalizedText(value.label) &&
+    (value.url === undefined || typeof value.url === 'string') &&
+    (value.note === undefined || typeof value.note === 'string')
+  )
+}
 
-  // --------------------------------------------------------------------- Hama
-  {
-    id: 'ham-norias',
-    governorateId: 'SY05',
-    name: { en: 'Norias of Hama', ar: 'نواعير حماة' },
-    description: {
-      en: 'Historic wooden water wheels on the Orontes River, long used to lift water for irrigation.',
-      ar: 'عجلات مائية خشبية تاريخية على نهر العاصي، استُخدمت قديماً لرفع المياه للري.',
-    },
-    category: 'landmark',
-    coordinate: { lon: 37.298, lat: 35.313 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'ham-citadel',
-    governorateId: 'SY05',
-    name: { en: 'Hama Citadel', ar: 'قلعة حماة' },
-    description: {
-      en: 'An archaeological mound and fortification site overlooking the Orontes River in central Hama.',
-      ar: 'تلّ أثري وموقع تحصيني مطلّ على نهر العاصي في مركز مدينة حماة.',
-    },
-    category: 'historical',
-    coordinate: { lon: 37.305, lat: 35.31 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'ham-nuri-mosque',
-    governorateId: 'SY05',
-    name: { en: 'Al-Nuri Mosque', ar: 'جامع النوري' },
-    description: {
-      en: 'A central mosque in Hama associated with the city’s historic core.',
-      ar: 'مسجد رئيسي في حماة مرتبط بالنواة التاريخية للمدينة.',
-    },
-    category: 'religious',
-    coordinate: { lon: 37.3, lat: 35.308 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'ham-museum',
-    governorateId: 'SY05',
-    name: { en: 'Hama Museum', ar: 'متحف حماة' },
-    description: {
-      en: 'A regional museum presenting artifacts from sites around Hama and the Orontes valley.',
-      ar: 'متحف إقليمي يعرض قطعاً أثرية من مواقع حماة ووادي العاصي.',
-    },
-    category: 'museum',
-    coordinate: { lon: 37.302, lat: 35.312 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
+function isImageMeta(value: unknown): value is ImageMeta {
+  return isRecord(value) && typeof value.src === 'string' && isLocalizedText(value.alt)
+}
 
-  // --------------------------------------------------------------------- Homs
-  {
-    id: 'hom-khalid-mosque',
-    governorateId: 'SY04',
-    name: { en: 'Khalid ibn al-Walid Mosque', ar: 'جامع خالد بن الوليد' },
-    description: {
-      en: 'A large mosque in Homs named after the early Islamic commander, with distinctive twin minarets.',
-      ar: 'مسجد كبير في حمص يحمل اسم القائد الإسلامي خالد بن الوليد، يتميّز بمئذنتيه التوأم.',
-    },
-    category: 'religious',
-    coordinate: { lon: 38.209, lat: 34.466 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'hom-citadel',
-    governorateId: 'SY04',
-    name: { en: 'Homs Citadel', ar: 'قلعة حمص' },
-    description: {
-      en: 'A historic citadel mound within the city of Homs.',
-      ar: 'تلّ قلعة تاريخي داخل مدينة حمص.',
-    },
-    category: 'historical',
-    coordinate: { lon: 38.205, lat: 34.465 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'hom-krak-des-chevaliers',
-    governorateId: 'SY04',
-    name: { en: 'Krak des Chevaliers', ar: 'قلعة الحصن' },
-    description: {
-      en: 'A renowned Crusader-era fortress in the western Homs countryside, considered a major example of medieval military architecture.',
-      ar: 'قلعة صليبية شهيرة في ريف حمص الغربي، تُعدّ من أبرز نماذج العمارة العسكرية في العصور الوسطى.',
-    },
-    category: 'historical',
-    coordinate: { lon: 36.2936, lat: 34.6908 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'hom-museum',
-    governorateId: 'SY04',
-    name: { en: 'Homs Museum', ar: 'متحف حمص' },
-    description: {
-      en: 'A museum holding artifacts from the Homs region and surrounding archaeological sites.',
-      ar: 'متحف يحوي قطعاً أثرية من منطقة حمص والمواقع الأثرية المحيطة بها.',
-    },
-    category: 'museum',
-    coordinate: { lon: 38.21, lat: 34.467 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
+function isAttraction(value: unknown): value is Attraction {
+  return (
+    isRecord(value) &&
+    typeof value.id === 'string' &&
+    typeof value.governorateId === 'string' &&
+    isLocalizedText(value.name) &&
+    isLocalizedText(value.description) &&
+    typeof value.category === 'string' &&
+    CATEGORIES.has(value.category as AttractionCategory) &&
+    isRecord(value.coordinate) &&
+    typeof value.coordinate.lon === 'number' &&
+    Number.isFinite(value.coordinate.lon) &&
+    typeof value.coordinate.lat === 'number' &&
+    Number.isFinite(value.coordinate.lat) &&
+    (value.image === undefined || isImageMeta(value.image)) &&
+    isSourceRef(value.source) &&
+    typeof value.reviewedOn === 'string' &&
+    /^\d{4}-\d{2}-\d{2}$/.test(value.reviewedOn)
+  )
+}
 
-  // ------------------------------------------------------------------ Latakia
-  {
-    id: 'lat-corniche',
-    governorateId: 'SY06',
-    name: { en: 'Latakia Corniche', ar: 'كورنيش اللاذقية' },
-    description: {
-      en: 'A seafront promenade along the Mediterranean coast in the city of Latakia.',
-      ar: 'واجهة بحرية ممتدة على ساحل البحر المتوسط في مدينة اللاذقية.',
-    },
-    category: 'nature',
-    coordinate: { lon: 35.99, lat: 35.58 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'lat-ugarit',
-    governorateId: 'SY06',
-    name: { en: 'Ugarit (Ras Shamra)', ar: 'أوغاريت (رأس شمرة)' },
-    description: {
-      en: 'The archaeological site of an ancient coastal city, significant for early alphabetic writing.',
-      ar: 'موقع أثري لمدينة ساحلية قديمة، ذات أهمية كبرى في تاريخ الكتابة الأبجدية المبكرة.',
-    },
-    category: 'archaeology',
-    coordinate: { lon: 35.945, lat: 35.598 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'lat-museum',
-    governorateId: 'SY06',
-    name: { en: 'Latakia Museum', ar: 'متحف اللاذقية' },
-    description: {
-      en: 'A regional museum presenting artifacts from Latakia and the surrounding coast.',
-      ar: 'متحف إقليمي يعرض قطعاً أثرية من اللاذقية والساحل المحيط بها.',
-    },
-    category: 'museum',
-    coordinate: { lon: 35.988, lat: 35.58 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-  {
-    id: 'lat-ras-ibn-hani',
-    governorateId: 'SY06',
-    name: { en: 'Ras Ibn Hani', ar: 'رأس ابن هاني' },
-    description: {
-      en: 'A coastal archaeological site near Latakia with remains from several historical periods.',
-      ar: 'موقع أثري ساحلي قرب اللاذقية يحوي بقايا من فترات تاريخية متعددة.',
-    },
-    category: 'archaeology',
-    coordinate: { lon: 35.92, lat: 35.62 },
-    source: SEED_SOURCE,
-    reviewedOn: SEED_REVIEWED_ON,
-  },
-]
+function parseAttractions(value: unknown): readonly Attraction[] {
+  if (!Array.isArray(value) || !value.every(isAttraction)) {
+    throw new Error('Invalid attraction catalog: every record must match the Attraction contract.')
+  }
+
+  const ids = new Set<string>()
+  for (const attraction of value) {
+    if (ids.has(attraction.id)) {
+      throw new Error(`Invalid attraction catalog: duplicate id "${attraction.id}".`)
+    }
+    ids.add(attraction.id)
+  }
+
+  return value
+}
+
+export const attractions = parseAttractions(records)
