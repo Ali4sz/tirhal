@@ -1,0 +1,15 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e3]:
+    - main "Interactive map of Syria" [ref=f2e4]:
+      - generic:
+        - generic: Tirhal
+        - button "Language" [ref=f2e6] [cursor=pointer]:
+          - generic [ref=f2e7]: English
+    - complementary "Information panel" [ref=f2e9]:
+      - generic [ref=f2e12]:
+        - heading "Explore Syria" [level=2] [ref=f2e13]
+        - paragraph [ref=f2e14]: Choose a governorate from the map to discover its cultural and historical attractions.
+        - paragraph [ref=f2e15]: "Tip: pick a region on the map or from the list."
+  - generic [ref=f2e16]:
+    - generic "Toggle devtools panel" [ref=f2e17] [cursor=pointer]
+    - generic "Toggle Component Inspector" [ref=f2e23] [cursor=pointer]

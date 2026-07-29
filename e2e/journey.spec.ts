@@ -17,7 +17,12 @@ test('full discovery journey + RTL', async ({ page }) => {
 
   // Overview
   await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'English', pressed: true })).toBeVisible()
+
+  // The locale trigger is a pill button showing the current language label.
+  const localeTrigger = page.locator('.tirhal-locale__trigger')
+  await expect(localeTrigger).toBeVisible()
+  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'false')
+  await expect(localeTrigger).toContainText('English')
 
   const map = page.locator('.tirhal-map')
   const panel = page.locator('.tirhal-app__panel')
@@ -40,7 +45,9 @@ test('full discovery journey + RTL', async ({ page }) => {
     for (let j = 0; j < 6; j++) {
       const x = ((i + 0.5) / 6) * box.width
       const y = ((j + 0.5) / 6) * box.height
-      if (x > box.width - 70 && y < 170) continue // skip zoom controls
+      // Skip floating chrome: zoom controls (top-right) and brand/locale (top-left).
+      if (x > box.width - 70 && y < 170) continue
+      if (x < 200 && y < 80) continue
       await map.click({ position: { x, y } })
       let title = 'Explore Syria'
       try {
@@ -81,11 +88,21 @@ test('full discovery journey + RTL', async ({ page }) => {
   await page.getByRole('button', { name: 'Back to overview' }).click()
   await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
 
-  // --- Switch to Arabic: root lang/dir update, UI translates, panel flips left. ---
-  await page.getByRole('button', { name: 'العربية' }).click()
+  // --- Switch to Arabic via the popover list: open trigger, select option,
+  //     verify root lang/dir update, UI translates, panel flips left. ---
+  await localeTrigger.click()
+  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'true')
+  await expect(page.locator('.tirhal-locale__popover')).toBeVisible()
+
+  // Select the Arabic option from the listbox.
+  await page.locator('.tirhal-locale__option', { hasText: 'العربية' }).click()
+
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
   await expect(page.getByRole('heading', { name: 'استكشف سوريا' })).toBeVisible()
+
+  // Popover should have closed after selection.
+  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'false')
 
   const arPanel = await panel.boundingBox()
   const arMap = await map.boundingBox()
@@ -93,4 +110,44 @@ test('full discovery journey + RTL', async ({ page }) => {
 
   expect(errors, `console/page errors:\n${errors.join('\n')}`).toEqual([])
   expect(warnings.filter((warning) => warning.includes('willReadFrequently'))).toEqual([])
+})
+
+test('mobile bottom drawer starts compact and toggles', async ({ page }) => {
+  // Use a mobile viewport at the 768px breakpoint boundary.
+  await page.setViewportSize({ width: 375, height: 812 })
+  await page.goto('/')
+
+  // Wait for the map to be ready.
+  await page.locator('.tirhal-map canvas').waitFor({ state: 'visible' })
+  await page.waitForTimeout(1200)
+
+  // The drawer handle should be visible.
+  const handle = page.locator('.tirhal-app__panel-handle')
+  await expect(handle).toBeVisible()
+  await expect(handle).toHaveAttribute('aria-expanded', 'false')
+
+  // The panel card content should be hidden in compact mode (drawer is only
+  // the handle height). Verify the panel is compact by checking its block size.
+  const panel = page.locator('.tirhal-app__panel')
+  const panelBox = await panel.boundingBox()
+  expect(panelBox!.height).toBeLessThanOrEqual(60) // ~3rem handle only
+
+  // Click the handle to expand the drawer. Use evaluateHandle because the Vue
+  // DevTools overlay (dev mode only) can intercept pointer events on mobile.
+  await handle.evaluate((el) => (el as HTMLButtonElement).click())
+  await expect(handle).toHaveAttribute('aria-expanded', 'true')
+
+  // Wait for the CSS block-size transition to complete before measuring.
+  await page.waitForTimeout(400)
+
+  // The expanded drawer should be much taller.
+  const expandedBox = await panel.boundingBox()
+  expect(expandedBox!.height).toBeGreaterThan(200)
+
+  // Click again to compact.
+  await handle.evaluate((el) => (el as HTMLButtonElement).click())
+  await expect(handle).toHaveAttribute('aria-expanded', 'false')
+  await page.waitForTimeout(400)
+  const compactBox = await panel.boundingBox()
+  expect(compactBox!.height).toBeLessThanOrEqual(60)
 })

@@ -1,0 +1,35 @@
+- generic [ref=f11e1]:
+  - generic [ref=f11e3]:
+    - main "Interactive map of Syria" [ref=f11e4]:
+      - generic [ref=f11e5]:
+        - generic "Interactive map of Syria" [ref=f11e6]:
+          - generic [ref=f11e7]:
+            - generic:
+              - generic [ref=f11e11]:
+                - button "+" [ref=f11e12] [cursor=pointer]
+                - button "–" [ref=f11e13] [cursor=pointer]
+              - button "i" [ref=f11e15] [cursor=pointer]
+        - generic [ref=f11e17]:
+          - button "Zoom in" [ref=f11e18] [cursor=pointer]:
+            - generic [ref=f11e19]: +
+          - button "Zoom out" [ref=f11e20] [cursor=pointer]:
+            - generic [ref=f11e21]: −
+          - button "Reset to Syria" [ref=f11e22] [cursor=pointer]:
+            - generic [ref=f11e23]: ⤾
+        - status [ref=f11e24]
+      - generic:
+        - generic: Tirhal
+        - generic [ref=f11e25]:
+          - button "Language" [expanded] [ref=f11e26] [cursor=pointer]:
+            - generic [ref=f11e27]: English
+          - listbox "Language" [ref=f11e48]:
+            - option "English" [active] [selected] [ref=f11e49] [cursor=pointer]
+            - option "العربية" [ref=f11e52] [cursor=pointer]
+    - complementary "Information panel" [ref=f11e29]:
+      - generic [ref=f11e32]:
+        - heading "Explore Syria" [level=2] [ref=f11e33]
+        - paragraph [ref=f11e34]: Choose a governorate from the map to discover its cultural and historical attractions.
+        - paragraph [ref=f11e35]: "Tip: pick a region on the map or from the list."
+  - generic [ref=f11e36]:
+    - generic "Toggle devtools panel" [ref=f11e37] [cursor=pointer]
+    - generic "Toggle Component Inspector" [ref=f11e43] [cursor=pointer]
