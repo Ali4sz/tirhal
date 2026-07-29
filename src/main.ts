@@ -6,10 +6,10 @@ import { applyInitialLocale } from '@/composables/useLocale'
 import { initTourismData } from '@/repositories/tourismRepository'
 
 // Global stylesheets — imported exactly once here.
-// `main.css` holds all Tirhal design tokens, reset, layout, and OpenLayers overrides.
-// `ol/ol.css` is OpenLayers' required base stylesheet.
-import './assets/main.css'
+// `ol/ol.css` is OpenLayers' required base stylesheet, imported FIRST so that
+// `main.css` can override OL defaults (e.g. attribution positioning) cleanly.
 import 'ol/ol.css'
+import './assets/main.css'
 
 async function bootstrap() {
   // Resolve and apply the initial locale (lang + dir) to <html> BEFORE the app
