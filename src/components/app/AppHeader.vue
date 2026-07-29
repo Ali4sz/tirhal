@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /**
- * AppHeader — the persistent application header: brand identity and the
- * locale switcher. It owns no discovery or map state.
+ * AppHeader — floating chrome overlay: brand identity pill and the locale
+ * switcher trigger. It owns no discovery or map state. It renders no
+ * conventional header bar; it floats transparently over the map surface.
  */
 import { useI18n } from 'vue-i18n'
 import LocaleSwitcher from '@/components/app/LocaleSwitcher.vue'
@@ -10,11 +11,8 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <header class="tirhal-app__header">
-    <div class="tirhal-brand">
-      <span class="tirhal-brand__name">{{ t('app.name') }}</span>
-      <span class="tirhal-brand__tagline">{{ t('app.tagline') }}</span>
-    </div>
+  <div class="tirhal-app__header">
+    <span class="tirhal-brand-pill">{{ t('app.name') }}</span>
     <LocaleSwitcher />
-  </header>
+  </div>
 </template>

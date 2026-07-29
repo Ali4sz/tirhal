@@ -85,6 +85,24 @@ const hoverName = computed(() =>
 // ---------------------------------------------------------------------------
 // Styles (read reactive state via closure; re-render via layer.changed())
 // ---------------------------------------------------------------------------
+// Warm MD3-inspired palette mirroring the tokens defined in `main.css`.
+// OpenLayers canvas styles cannot safely consume CSS variables, so these
+// named constants are the source of truth for map overlays and markers.
+// Basemap tiles are intentionally NOT recolored — only overlays/markers.
+const MAP_COLORS = {
+  primary: '#c75b39', // --md-sys-color-primary
+  primaryAlpha: (a: number) => `rgba(199, 91, 57, ${a})`, // primary w/ alpha
+  primaryContainer: '#fad9c7', // --md-sys-color-primary-container
+  secondary: '#8b5a2b', // --md-sys-color-secondary
+  secondaryContainer: '#edd5bb', // --md-sys-color-secondary-container
+  surfaceContainer: '#f5e8d5', // --md-sys-color-surface-container
+  surfaceContainerHigh: '#efdac0', // --md-sys-color-surface-container-high
+  onSurface: '#2a1810', // --md-sys-color-on-surface
+  onSurfaceVariant: '#6b5440', // --md-sys-color-on-surface-variant
+  outline: '#d4b896', // --md-sys-color-outline
+  white: '#ffffff',
+} as const
+
 function governorateStyle(feature: FeatureLike): Style {
   const pcode = feature.get('adm1_pcode') as string | undefined
   const gov = pcode ? govByPcode.get(pcode) : undefined
@@ -93,23 +111,23 @@ function governorateStyle(feature: FeatureLike): Style {
   const supported = gov?.coverage === 'supported'
 
   const fillColor = isSelected
-    ? 'rgba(59, 110, 165, 0.38)'
+    ? MAP_COLORS.primaryAlpha(0.38)
     : isHovered
-      ? 'rgba(59, 110, 165, 0.22)'
+      ? MAP_COLORS.primaryAlpha(0.22)
       : supported
-        ? 'rgba(224, 226, 236, 0.55)'
-        : 'rgba(224, 226, 236, 0.35)'
+        ? `${MAP_COLORS.surfaceContainer}cc` // ~80% alpha
+        : `${MAP_COLORS.surfaceContainer}99` // ~60% alpha
 
   return new Style({
     fill: new Fill({ color: fillColor }),
     stroke: new Stroke({
-      color: isSelected ? '#3b6ea5' : '#74777f',
+      color: isSelected ? MAP_COLORS.primary : MAP_COLORS.outline,
       width: isSelected ? 2.5 : 1,
     }),
     text: new Text({
       text: gov ? gov.name[locale.value] : (pcode ?? ''),
       font: '600 13px system-ui, sans-serif',
-      fill: new Fill({ color: '#1a1c1e' }),
+      fill: new Fill({ color: MAP_COLORS.onSurface }),
       stroke: new Stroke({ color: 'rgba(255, 255, 255, 0.85)', width: 3 }),
       overflow: true,
     }),
@@ -120,8 +138,8 @@ function markerStyle(): Style {
   return new Style({
     image: new CircleStyle({
       radius: 7,
-      fill: new Fill({ color: '#3b6ea5' }),
-      stroke: new Stroke({ color: '#ffffff', width: 2 }),
+      fill: new Fill({ color: MAP_COLORS.primary }),
+      stroke: new Stroke({ color: MAP_COLORS.white, width: 2 }),
     }),
   })
 }
