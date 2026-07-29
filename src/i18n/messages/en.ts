@@ -33,7 +33,8 @@ const en = {
   panel: {
     overview: {
       title: 'Explore Syria',
-      intro: 'Choose a governorate from the map to discover its cultural and historical attractions.',
+      intro:
+        'Choose a governorate from the map to discover its cultural and historical attractions.',
       hint: 'Tip: pick a region on the map or from the list.',
     },
     governorate: {
@@ -68,6 +69,8 @@ const en = {
     skipToMap: 'Skip to map',
     panelRegion: 'Information panel',
     mapRegion: 'Interactive map of Syria',
+    drawerExpand: 'Expand information panel',
+    drawerCollapse: 'Collapse information panel',
   },
 }
 

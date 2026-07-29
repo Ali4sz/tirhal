@@ -66,6 +66,8 @@ const ar: MessageSchema = {
     skipToMap: 'تخطَّ إلى الخريطة',
     panelRegion: 'لوحة المعلومات',
     mapRegion: 'خريطة تفاعلية لسوريا',
+    drawerExpand: 'توسيع لوحة المعلومات',
+    drawerCollapse: 'طيّ لوحة المعلومات',
   },
 }
 
