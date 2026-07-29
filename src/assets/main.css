@@ -60,8 +60,9 @@
   --md-sys-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
 
   /* Typography */
-  --md-sys-typescale-font-family: system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Noto Sans Arabic', 'Helvetica Neue', Arial, sans-serif;
+  --md-sys-typescale-font-family:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', 'Helvetica Neue', Arial,
+    sans-serif;
   --md-sys-typescale-body-large: 1rem;
   --md-sys-typescale-body-medium: 0.875rem;
   --md-sys-typescale-label-large: 0.875rem;
@@ -84,8 +85,15 @@
   --md-sys-focus-ring: var(--md-sys-color-primary);
 
   /* Layout */
-  --tirhal-panel-inline-size: 24rem;
+  --tirhal-panel-inline-size: 20rem;
   --tirhal-header-block-size: 4rem;
+  --tirhal-overlay-inset: 1rem;
+
+  /* Z-index tiers — keep floating chrome layered predictably. */
+  --tirhal-z-map: 0;
+  --tirhal-z-overlay: 5;
+  --tirhal-z-popover: 10;
+  --tirhal-z-drawer: 20;
 }
 
 /* ----------------------------------------------------------------------------
@@ -155,14 +163,13 @@ button {
    ------------------------------------------------------------------------- */
 /* Full-screen grid: map area first, information panel second. Because the grid
    inherits document direction, the panel lands at the logical inline-end —
-   right in English (ltr) and left in Arabic (rtl) — with no JS repositioning. */
+   right in English (ltr) and left in Arabic (rtl) — with no JS repositioning.
+   The header row is gone; branding and locale controls float over the map. */
 .tirhal-app {
   display: grid;
   grid-template-columns: 1fr var(--tirhal-panel-inline-size);
-  grid-template-rows: var(--tirhal-header-block-size) 1fr;
-  grid-template-areas:
-    'header header'
-    'map panel';
+  grid-template-rows: 1fr;
+  grid-template-areas: 'map panel';
   block-size: 100dvh;
   inline-size: 100%;
   overflow: hidden;
@@ -170,15 +177,22 @@ button {
 }
 
 .tirhal-app__header {
-  grid-area: header;
+  position: absolute;
+  inset-block-start: var(--tirhal-overlay-inset);
+  inset-inline-start: var(--tirhal-overlay-inset);
+  inset-inline-end: var(--tirhal-overlay-inset);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-inline: 1rem;
-  background-color: var(--md-sys-color-surface);
-  box-shadow: var(--md-sys-elevation-1);
-  z-index: 2;
+  pointer-events: none;
+  z-index: var(--tirhal-z-overlay);
+}
+
+/* Floating children re-enable pointer interaction; the wrapper itself is a
+   transparent layout container that does not block map dragging. */
+.tirhal-app__header > * {
+  pointer-events: auto;
 }
 
 .tirhal-app__map {
@@ -190,11 +204,12 @@ button {
 }
 
 /* The panel grid track is a transparent gutter; the card floats inside it,
-   detached from the viewport edges, per the M3 docked-card pattern. */
+   detached from the viewport edges, per the M3 docked-card pattern.
+   Reduced footprint keeps the map dominant on desktop. */
 .tirhal-app__panel {
   grid-area: panel;
   min-block-size: 0;
-  padding: 1rem;
+  padding: 0.75rem;
   padding-inline-start: 0.5rem;
   background-color: transparent;
   display: flex;
@@ -210,22 +225,20 @@ button {
   box-shadow: var(--md-sys-elevation-2);
 }
 
-/* Brand */
-.tirhal-brand {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.tirhal-brand__name {
-  font-size: var(--md-sys-typescale-title-large);
+/* Brand pill — a subtle, non-interactive floating chip. */
+.tirhal-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  font-size: var(--md-sys-typescale-title-medium);
   font-weight: 700;
   color: var(--md-sys-color-primary);
-}
-
-.tirhal-brand__tagline {
-  font-size: var(--md-sys-typescale-body-medium);
-  color: var(--md-sys-color-on-surface-variant);
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-shape-corner-full);
+  box-shadow: var(--md-sys-elevation-1);
+  user-select: none;
+  /* Non-interactive branding pill. */
+  pointer-events: none;
 }
 
 /* ----------------------------------------------------------------------------
@@ -256,6 +269,63 @@ button {
   background-color: var(--md-sys-color-surface-container-high);
 }
 
+/* Attribution — bottom-center floating pill. OpenLayers renders this as a
+   collapsed "i" button that expands to show attribution links. We restyle
+   it as a warm pill while keeping the button, links, and expand/collapse
+   behavior fully functional and accessible. OL's own stylesheet pins this
+   to the inline-end corner, so we override with higher specificity using
+   the Tirhal map container class. */
+.tirhal-map .ol-attribution {
+  right: auto;
+  left: 50%;
+  inset-block-end: var(--tirhal-overlay-inset);
+  transform: translateX(-50%);
+  padding: 0.25rem 0.6rem;
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  box-shadow: var(--md-sys-elevation-1);
+  font-size: var(--md-sys-typescale-body-medium);
+  z-index: var(--tirhal-z-overlay);
+  max-inline-size: max-content;
+}
+
+/* Center the pill content; hide the default OL absolute positioning offset. */
+.ol-attribution button {
+  border: none;
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  border-radius: var(--md-sys-shape-corner-full);
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-style: italic;
+  font-weight: 700;
+  font-family: var(--md-sys-typescale-font-family);
+}
+
+.ol-attribution ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ol-attribution li {
+  color: var(--md-sys-color-on-surface-variant);
+  white-space: nowrap;
+}
+
+.ol-attribution a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+}
+
+.ol-attribution a:hover {
+  text-decoration: underline;
+}
+
 /* ----------------------------------------------------------------------------
    4b. Map (SyriaMap, MapControls, MapStatusOverlay)
    ------------------------------------------------------------------------- */
@@ -278,7 +348,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  z-index: 3;
+  z-index: var(--tirhal-z-overlay);
 }
 
 .tirhal-map-control-btn {
@@ -318,7 +388,7 @@ button {
   border-radius: var(--md-sys-shape-corner-medium);
   box-shadow: var(--md-sys-elevation-1);
   font-size: var(--md-sys-typescale-body-medium);
-  z-index: 3;
+  z-index: var(--tirhal-z-overlay);
 }
 
 .tirhal-map-status__label {
@@ -330,7 +400,7 @@ button {
    4c. Panel system (DiscoveryPanel + sub-panels) and locale switcher
    ------------------------------------------------------------------------- */
 .tirhal-panel {
-  padding: 1.25rem;
+  padding: 1rem;
 }
 
 .tirhal-panel-section {
@@ -491,58 +561,210 @@ button {
   background-color: var(--md-sys-color-primary-hover);
 }
 
-/* Equal-width buttons + an absolutely positioned pill that slides between them.
-   The slide distance is one button width plus the gap; in RTL the second button
-   sits visually to the left, so the translation is negated. */
+/* Locale popover — pill trigger with dropdown listbox. */
 .tirhal-locale {
-  --tirhal-locale-btn-size: 4.25rem;
-  --tirhal-locale-gap: 0.25rem;
   position: relative;
   isolation: isolate;
+}
+
+.tirhal-locale__trigger {
   display: inline-flex;
-  gap: var(--tirhal-locale-gap);
-  padding: 0.25rem;
-  background-color: var(--md-sys-color-surface-container);
-  border-radius: var(--md-sys-shape-corner-full);
-}
-
-.tirhal-locale__indicator {
-  position: absolute;
-  inset-block: 0.25rem;
-  inset-inline-start: 0.25rem;
-  inline-size: var(--tirhal-locale-btn-size);
-  border-radius: var(--md-sys-shape-corner-full);
-  background-color: var(--md-sys-color-primary);
-  transition: transform var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
-  z-index: -1;
-}
-
-.tirhal-locale--ar .tirhal-locale__indicator {
-  transform: translateX(calc(var(--tirhal-locale-btn-size) + var(--tirhal-locale-gap)));
-}
-
-[dir='rtl'] .tirhal-locale--ar .tirhal-locale__indicator {
-  transform: translateX(calc(-1 * (var(--tirhal-locale-btn-size) + var(--tirhal-locale-gap))));
-}
-
-.tirhal-locale__btn {
-  inline-size: var(--tirhal-locale-btn-size);
-  padding-block: 0.4rem;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
   border: none;
   border-radius: var(--md-sys-shape-corner-full);
-  background-color: transparent;
+  background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
+  font-size: var(--md-sys-typescale-label-large);
   font-weight: 600;
+  box-shadow: var(--md-sys-elevation-1);
   cursor: pointer;
-  transition: color var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
+  transition:
+    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
-.tirhal-locale__btn--active {
-  color: var(--md-sys-color-on-primary);
+.tirhal-locale__trigger:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.tirhal-locale__trigger:active {
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+
+.tirhal-locale__trigger-caret {
+  inline-size: 0;
+  block-size: 0;
+  border-inline-start: 0.3rem solid transparent;
+  border-inline-end: 0.3rem solid transparent;
+  border-block-start: 0.35rem solid var(--md-sys-color-on-surface-variant);
+  transition: transform var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+.tirhal-locale__trigger-caret--open {
+  transform: rotate(180deg);
+}
+
+.tirhal-locale__popover {
+  position: absolute;
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline-end: 0;
+  min-inline-size: 8rem;
+  padding: 0.3rem;
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-2);
+  z-index: var(--tirhal-z-popover);
+}
+
+.tirhal-locale__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--md-sys-shape-corner-small);
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short)
+    var(--md-sys-motion-easing-standard);
+}
+
+.tirhal-locale__option:hover,
+.tirhal-locale__option:focus-visible {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.tirhal-locale__option--active {
+  background-color: var(--md-sys-color-primary-container);
+}
+
+.tirhal-locale__option--active .tirhal-locale__option-label {
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 700;
+}
+
+.tirhal-locale__option-label {
+  color: var(--md-sys-color-on-surface);
+}
+
+.tirhal-locale__option-check {
+  inline-size: 0.4rem;
+  block-size: 0.4rem;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-primary);
 }
 
 /* ----------------------------------------------------------------------------
-   5. Reduced motion
+   5. Desktop: hide the mobile drawer handle (side-card layout only)
+   ------------------------------------------------------------------------- */
+.tirhal-app__panel-handle {
+  display: none;
+}
+
+/* ----------------------------------------------------------------------------
+   6. Mobile bottom drawer (max-width: 768px)
+   -------------------------------------------------------------------------
+   At 768px and below the grid collapses to a single column. The panel
+   becomes a bottom drawer that starts compact (only handle visible) and
+   expands when the handle is toggled. The drawer state is owned by App.vue
+   via the `tirhal-app__panel--expanded` class; CSS only controls layout.
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .tirhal-app {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'map';
+  }
+
+  .tirhal-app__map {
+    grid-area: map;
+  }
+
+  /* The panel detaches from the grid and floats at the bottom as a drawer. */
+  .tirhal-app__panel {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    grid-area: unset;
+    flex-direction: column;
+    padding: 0;
+    block-size: auto;
+    z-index: var(--tirhal-z-drawer);
+    /* Compact by default: only the handle is visible. */
+    block-size: 3rem;
+    transition:
+      block-size var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard),
+      box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+  }
+
+  .tirhal-app__panel--expanded {
+    block-size: 70dvh;
+    box-shadow: var(--md-sys-elevation-3);
+  }
+
+  /* Show the handle button only on mobile. */
+  .tirhal-app__panel-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    block-size: 3rem;
+    border: none;
+    border-block-start: 1px solid var(--md-sys-color-outline-variant);
+    background-color: var(--md-sys-color-surface);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .tirhal-app__panel-handle:hover {
+    background-color: var(--md-sys-color-surface-container-high);
+  }
+
+  /* The arrow is a chevron that points up when compact, down when expanded. */
+  .tirhal-app__panel-handle-arrow {
+    inline-size: 0;
+    block-size: 0;
+    border-inline-start: 0.4rem solid transparent;
+    border-inline-end: 0.4rem solid transparent;
+    border-block-end: 0.5rem solid var(--md-sys-color-primary);
+    transition: transform var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+  }
+
+  .tirhal-app__panel--expanded .tirhal-app__panel-handle-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* The card fills the remaining drawer space when expanded. When compact
+     it is hidden by the drawer's limited block-size + overflow. */
+  .tirhal-app__panel-card {
+    flex: 1;
+    min-block-size: 0;
+    overflow-y: auto;
+    border-radius: 0;
+    border: none;
+    border-block-start: 1px solid var(--md-sys-color-outline-variant);
+  }
+
+  /* On mobile, map controls shift down slightly to avoid the brand pill. */
+  .tirhal-map-controls {
+    inset-block-start: 4rem;
+  }
+
+  /* On mobile, map status shifts up to avoid the bottom drawer. */
+  .tirhal-map-status {
+    inset-block-end: calc(3rem + 0.75rem);
+  }
+
+  /* On mobile, attribution shifts up to avoid the compact bottom drawer. */
+  .tirhal-map .ol-attribution {
+    inset-block-end: calc(3rem + 0.5rem);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   7. Reduced motion
    ------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
