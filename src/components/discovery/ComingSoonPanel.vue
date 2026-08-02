@@ -8,6 +8,7 @@ import { useI18n } from 'vue-i18n'
 import { useDiscoveryState } from '@/composables/useDiscoveryState'
 import { useLocale } from '@/composables/useLocale'
 import { localized } from '@/types/tourism'
+import AtlasPlaceholder from '@/components/ui/AtlasPlaceholder.vue'
 
 const { t } = useI18n()
 const { locale } = useLocale()
@@ -19,11 +20,15 @@ const govName = computed(() =>
 </script>
 
 <template>
-  <section class="tirhal-panel-section">
+  <section class="tirhal-panel-section tirhal-coming-soon">
     <button type="button" class="tirhal-panel-back" @click="backToOverview">
       {{ t('panel.comingSoon.back') }}
     </button>
-    <h2 class="tirhal-panel-title">{{ t('panel.comingSoon.title') }}</h2>
+    <div class="tirhal-panel-eyebrow">{{ t('panel.comingSoon.eyebrow') }}</div>
+    <h2 class="tirhal-panel-title" data-panel-heading tabindex="-1">
+      {{ t('panel.comingSoon.title') }}
+    </h2>
     <p class="tirhal-panel-intro">{{ t('panel.comingSoon.message', { name: govName }) }}</p>
+    <AtlasPlaceholder :label="t('a11y.decorativePlaceholder')" />
   </section>
 </template>
