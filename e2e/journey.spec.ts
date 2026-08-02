@@ -1,153 +1,130 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+import type { Page } from '@playwright/test'
 
-test('full discovery journey + RTL', async ({ page }) => {
+const SUPPORTED_GOVERNORATE_ID = 'SY01'
+const COMING_SOON_GOVERNORATE_ID = 'SY02'
+
+async function waitForMap(page: Page): Promise<void> {
+  await expect(page.getByTestId('map-root')).toBeVisible()
+  await expect(page.getByTestId('map-root').locator('canvas').first()).toBeVisible()
+}
+
+function governorateButton(page: Page, id: string) {
+  return page.locator(`[data-governorate-id="${id}"]`)
+}
+
+test('full discovery journey and Arabic RTL', async ({ page }) => {
   const errors: string[] = []
   const warnings: string[] = []
-  page.on('console', (m) => {
-    if (m.type() === 'error') errors.push(m.text())
-    if (m.type() === 'warning') warnings.push(m.text())
+  page.on('console', (message) => {
+    if (message.type() === 'error') errors.push(message.text())
+    if (message.type() === 'warning') warnings.push(message.text())
   })
-  page.on('pageerror', (e) => errors.push(e.message))
+  page.on('pageerror', (error) => errors.push(error.message))
 
   await page.goto('/')
+  await waitForMap(page)
 
-  // Wait for the map (and its vector features) to be ready.
-  await page.locator('.tirhal-map canvas').waitFor({ state: 'visible' })
-  await page.waitForTimeout(1200)
+  await expect(page.getByRole('heading', { name: 'Welcome to Tirhal' })).toBeVisible()
+  await expect(page.getByRole('main', { name: 'Interactive map of Syria' })).toBeVisible()
 
-  // Overview
-  await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
-
-  // The locale trigger is a pill button showing the current language label.
-  const localeTrigger = page.locator('.tirhal-locale__trigger')
-  await expect(localeTrigger).toBeVisible()
-  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'false')
-  await expect(localeTrigger).toContainText('English')
-
-  const map = page.locator('.tirhal-map')
-  const panel = page.locator('.tirhal-app__panel')
-
-  // Exercise governorate hover hit testing without Canvas2D pixel readback.
-  await map.hover()
-
-  // In LTR, the panel sits at the inline-end (right of the map).
-  const enPanel = await panel.boundingBox()
-  const enMap = await map.boundingBox()
-  expect(enPanel!.x).toBeGreaterThan(enMap!.x)
-
-  // --- Coming soon: scan the map; reset to overview between hits so the
-  //     all-Syria view is preserved for the next probe. We wait for the panel
-  //     <h2> to change away from the overview state before reading it. ---
-  const box = (await map.boundingBox())!
-  const panelTitle = page.locator('.tirhal-panel-title')
-  let comingSoon = false
-  outer: for (let i = 0; i < 6 && !comingSoon; i++) {
-    for (let j = 0; j < 6; j++) {
-      const x = ((i + 0.5) / 6) * box.width
-      const y = ((j + 0.5) / 6) * box.height
-      // Skip floating chrome: zoom controls (top-right) and brand/locale (top-left).
-      if (x > box.width - 70 && y < 170) continue
-      if (x < 200 && y < 80) continue
-      await map.click({ position: { x, y } })
-      let title = 'Explore Syria'
-      try {
-        await expect(panelTitle).not.toHaveText('Explore Syria', { timeout: 800 })
-        title = (await panelTitle.textContent())?.trim() ?? ''
-      } catch {
-        title = (await panelTitle.textContent())?.trim() ?? ''
-      }
-      if (title === 'Coming soon') {
-        comingSoon = true
-        break outer
-      }
-      // Landed on a supported governorate list -> go back to keep the full view.
-      if (title && title !== 'Explore Syria') {
-        await page.getByRole('button', { name: 'Back to overview' }).click()
-        await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
-      }
-    }
-  }
-  expect(comingSoon, 'expected a Coming soon panel for an unsupported governorate').toBe(true)
-  await expect(page.getByRole('button', { name: 'Back to overview' })).toBeVisible()
+  await governorateButton(page, COMING_SOON_GOVERNORATE_ID).click()
+  await expect(page.getByRole('heading', { name: 'Coming soon' })).toBeVisible()
   await page.getByRole('button', { name: 'Back to overview' }).click()
-  await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
 
-  // --- Supported flow: click center -> governorate list -> attraction detail. ---
-  await map.click()
-  const firstItem = page.locator('.tirhal-attraction-item').first()
-  await expect(firstItem).toBeVisible()
+  await governorateButton(page, SUPPORTED_GOVERNORATE_ID).click()
+  const firstAttraction = page.locator('[data-attraction-id]').first()
+  await expect(firstAttraction).toBeVisible()
+  await firstAttraction.click()
 
-  await firstItem.click()
   await expect(page.getByRole('button', { name: 'Locate on map' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Close' })).toBeVisible()
+  await expect(page.getByText('Annual visitors', { exact: true })).toBeVisible()
+  await expect(page.locator('.tirhal-stat__note')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Best time to visit' })).toBeVisible()
+  await expect(page.locator('.tirhal-placeholder')).toBeVisible()
 
   await page.getByRole('button', { name: 'Locate on map' }).click()
   await page.getByRole('button', { name: 'Close' }).click()
-  await expect(firstItem).toBeVisible()
-
+  await expect(firstAttraction).toBeVisible()
   await page.getByRole('button', { name: 'Back to overview' }).click()
-  await expect(page.getByRole('heading', { name: 'Explore Syria' })).toBeVisible()
 
-  // --- Switch to Arabic via the popover list: open trigger, select option,
-  //     verify root lang/dir update, UI translates, panel flips left. ---
+  const localeTrigger = page.getByRole('button', { name: 'Language' })
   await localeTrigger.click()
-  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'true')
-  await expect(page.locator('.tirhal-locale__popover')).toBeVisible()
-
-  // Select the Arabic option from the listbox.
-  await page.locator('.tirhal-locale__option', { hasText: 'العربية' }).click()
-
+  await page.getByRole('option', { name: 'العربية' }).click()
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
-  await expect(page.getByRole('heading', { name: 'استكشف سوريا' })).toBeVisible()
-
-  // Popover should have closed after selection.
-  await expect(localeTrigger).toHaveAttribute('aria-expanded', 'false')
-
-  const arPanel = await panel.boundingBox()
-  const arMap = await map.boundingBox()
-  expect(arPanel!.x).toBeLessThan(arMap!.x)
+  await expect(page.getByRole('heading', { name: 'أهلاً بك في تِرحال' })).toBeVisible()
+  await expect(page.getByRole('main', { name: 'خريطة تفاعلية لسوريا' })).toBeVisible()
 
   expect(errors, `console/page errors:\n${errors.join('\n')}`).toEqual([])
   expect(warnings.filter((warning) => warning.includes('willReadFrequently'))).toEqual([])
 })
 
-test('mobile bottom drawer starts compact and toggles', async ({ page }) => {
-  // Use a mobile viewport at the 768px breakpoint boundary.
+test('desktop editorial surface collapses and reopens', async ({ page }) => {
+  await page.goto('/')
+  await waitForMap(page)
+
+  const handle = page.getByRole('button', { name: 'Collapse information panel' })
+  await expect(handle).toHaveAttribute('aria-expanded', 'true')
+  await handle.click()
+
+  const expandHandle = page.getByRole('button', { name: 'Expand information panel' })
+  await expect(expandHandle).toHaveAttribute('aria-expanded', 'false')
+  await expect(page.locator('#tirhal-drawer-content')).toBeHidden()
+  await expandHandle.click()
+  await expect(page.getByRole('heading', { name: 'Welcome to Tirhal' })).toBeVisible()
+})
+
+test('compact bottom sheet reveals selected content and supports keyboard locale selection', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 375, height: 812 })
   await page.goto('/')
+  await waitForMap(page)
 
-  // Wait for the map to be ready.
-  await page.locator('.tirhal-map canvas').waitFor({ state: 'visible' })
-  await page.waitForTimeout(1200)
+  const expandHandle = page.getByRole('button', { name: 'Expand information panel' })
+  await expect(expandHandle).toHaveAttribute('aria-expanded', 'false')
+  await expandHandle.click()
+  await expect(page.getByRole('heading', { name: 'Welcome to Tirhal' })).toBeVisible()
 
-  // The drawer handle should be visible.
-  const handle = page.locator('.tirhal-app__panel-handle')
-  await expect(handle).toBeVisible()
-  await expect(handle).toHaveAttribute('aria-expanded', 'false')
+  await governorateButton(page, SUPPORTED_GOVERNORATE_ID).click()
+  await expect(page.locator('[data-attraction-id]').first()).toBeVisible()
 
-  // The panel card content should be hidden in compact mode (drawer is only
-  // the handle height). Verify the panel is compact by checking its block size.
-  const panel = page.locator('.tirhal-app__panel')
-  const panelBox = await panel.boundingBox()
-  expect(panelBox!.height).toBeLessThanOrEqual(60) // ~3rem handle only
+  const localeTrigger = page.getByRole('button', { name: 'Language' })
+  await localeTrigger.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('listbox', { name: 'Language' })).toBeVisible()
+  await page.keyboard.press('ArrowDown')
+  await page.keyboard.press('Enter')
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
+  await expect(page.getByRole('button', { name: 'اللغة' })).toBeFocused()
+})
 
-  // Click the handle to expand the drawer. Use evaluateHandle because the Vue
-  // DevTools overlay (dev mode only) can intercept pointer events on mobile.
-  await handle.evaluate((el) => (el as HTMLButtonElement).click())
-  await expect(handle).toHaveAttribute('aria-expanded', 'true')
+test('reduced motion keeps the journey functional', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  await waitForMap(page)
+  await governorateButton(page, SUPPORTED_GOVERNORATE_ID).click()
+  await page.locator('[data-attraction-id]').first().click()
+  await expect(page.getByRole('button', { name: 'Locate on map' })).toBeVisible()
+})
 
-  // Wait for the CSS block-size transition to complete before measuring.
-  await page.waitForTimeout(400)
+test('visual atlas states remain composed', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Chromium owns deterministic visual baselines')
+  test.skip(!process.env.CI, 'Production preview owns deterministic visual baselines')
+  await page.setViewportSize({ width: 1440, height: 960 })
+  await page.goto('/')
+  await waitForMap(page)
+  await expect(page).toHaveScreenshot('atlas-overview-desktop.png', {
+    animations: 'disabled',
+    mask: [page.getByTestId('map-root').locator('canvas')],
+  })
 
-  // The expanded drawer should be much taller.
-  const expandedBox = await panel.boundingBox()
-  expect(expandedBox!.height).toBeGreaterThan(200)
-
-  // Click again to compact.
-  await handle.evaluate((el) => (el as HTMLButtonElement).click())
-  await expect(handle).toHaveAttribute('aria-expanded', 'false')
-  await page.waitForTimeout(400)
-  const compactBox = await panel.boundingBox()
-  expect(compactBox!.height).toBeLessThanOrEqual(60)
+  await governorateButton(page, SUPPORTED_GOVERNORATE_ID).click()
+  await page.locator('[data-attraction-id]').first().click()
+  await expect(page).toHaveScreenshot('atlas-attraction-desktop.png', {
+    animations: 'disabled',
+    mask: [page.getByTestId('map-root').locator('canvas')],
+  })
 })
