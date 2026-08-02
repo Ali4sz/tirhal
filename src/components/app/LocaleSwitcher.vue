@@ -13,7 +13,7 @@
  *  - Closes on Escape, outside-click, and language selection.
  *  - Arrow-key navigation moves the active option; Enter/Space selects.
  */
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useLocale } from '@/composables/useLocale'
 import type { AppLocale } from '@/types/locale'
@@ -21,8 +21,8 @@ import type { AppLocale } from '@/types/locale'
 const { t } = useI18n()
 const { locale, supportedLocales, setLocale } = useLocale()
 
-const open = ref(false)
-const activeIndex = ref(0)
+const open = shallowRef(false)
+const activeIndex = shallowRef(0)
 
 const triggerRef = useTemplateRef<HTMLButtonElement>('trigger')
 const popoverRef = useTemplateRef<HTMLDivElement>('popover')
@@ -130,12 +130,21 @@ onBeforeUnmount(() => {
       :aria-label="t('localeSwitcher.label')"
       @click="toggle"
     >
+      <svg class="tirhal-locale__globe" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8" />
+        <path
+          d="M4 12h16M12 4c2.3 2.2 3.5 4.9 3.5 8S14.3 17.8 12 20c-2.3-2.2-3.5-4.9-3.5-8S9.7 6.2 12 4Z"
+        />
+      </svg>
       <span class="tirhal-locale__trigger-label">{{ currentLabel }}</span>
-      <span
+      <svg
         class="tirhal-locale__trigger-caret"
         :class="{ 'tirhal-locale__trigger-caret--open': open }"
+        viewBox="0 0 24 24"
         aria-hidden="true"
-      />
+      >
+        <path d="m7 10 5 5 5-5" />
+      </svg>
     </button>
 
     <div
@@ -152,7 +161,7 @@ onBeforeUnmount(() => {
         class="tirhal-locale__option"
         :class="{ 'tirhal-locale__option--active': locale === code }"
         :aria-selected="locale === code"
-        tabindex="0"
+        :tabindex="activeIndex === index ? 0 : -1"
         @click="selectLocale(code)"
         @mouseenter="activeIndex = index"
       >
