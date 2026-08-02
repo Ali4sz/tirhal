@@ -27,7 +27,7 @@ const emit = defineEmits<{
       :title="zoomInLabel"
       @click="emit('zoom-in')"
     >
-      <span aria-hidden="true">+</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
     </button>
     <button
       type="button"
@@ -36,7 +36,7 @@ const emit = defineEmits<{
       :title="zoomOutLabel"
       @click="emit('zoom-out')"
     >
-      <span aria-hidden="true">−</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /></svg>
     </button>
     <button
       type="button"
@@ -45,7 +45,10 @@ const emit = defineEmits<{
       :title="resetLabel"
       @click="emit('reset')"
     >
-      <span aria-hidden="true">⤾</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 8V4m0 0h4M5 4l4 4M19 16v4m0 0h-4m4 0-4-4" />
+        <path d="M7.3 17A8 8 0 0 1 7 6.7M16.7 7A8 8 0 0 1 17 17.3" />
+      </svg>
     </button>
   </div>
 </template>

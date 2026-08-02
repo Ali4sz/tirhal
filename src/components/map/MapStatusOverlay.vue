@@ -17,10 +17,16 @@ defineProps<{
 <template>
   <div class="tirhal-map-status" role="status" aria-live="polite">
     <p v-if="selectedName" class="tirhal-map-status__line">
-      <span class="tirhal-map-status__label">{{ selectedLabel }}</span> {{ selectedName }}
+      <span class="tirhal-map-status__beacon" aria-hidden="true" />
+      <span
+        ><span class="tirhal-map-status__label">{{ selectedLabel }}</span> {{ selectedName }}</span
+      >
     </p>
     <p v-else-if="hoverName" class="tirhal-map-status__line">
-      <span class="tirhal-map-status__label">{{ hoverLabel }}</span> {{ hoverName }}
+      <span class="tirhal-map-status__beacon" aria-hidden="true" />
+      <span
+        ><span class="tirhal-map-status__label">{{ hoverLabel }}</span> {{ hoverName }}</span
+      >
     </p>
   </div>
 </template>
