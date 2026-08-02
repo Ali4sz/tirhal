@@ -31,11 +31,30 @@ const en = {
     selected: 'Selected: {name}',
   },
   panel: {
+    sheet: {
+      explore: 'Explore',
+    },
+    mode: {
+      overview: 'Syria overview',
+      governorate: 'Governorate attractions',
+      comingSoon: 'Governorate preview',
+      attraction: 'Attraction story',
+    },
     overview: {
-      title: 'Explore Syria',
+      title: 'Welcome to Tirhal',
       intro:
-        'Choose a governorate from the map to discover its cultural and historical attractions.',
-      hint: 'Tip: pick a region on the map or from the list.',
+        'Tirhal is a guide to the cultural and historical landmarks of Syria, mapped governorate by governorate.',
+      howItWorks: 'How it works',
+      step1: 'Select a governorate on the map.',
+      step2: 'Browse the attractions published for it.',
+      step3: 'Open one to see photos, visitor numbers, and the best time to go.',
+      hint: 'Four governorates are available today; more are on the way.',
+      eyebrow: 'A living cultural atlas',
+      prompt: 'Choose a place on the map to begin',
+      coverage: '4 curated regions',
+      regionList: 'Browse the atlas',
+      available: 'Explore',
+      soon: 'Soon',
     },
     governorate: {
       attractions: 'Attractions',
@@ -47,6 +66,7 @@ const en = {
       title: 'Coming soon',
       message: 'Curated attractions for {name} are being prepared. Check back later.',
       back: 'Back to overview',
+      eyebrow: 'The atlas is growing',
     },
     attraction: {
       close: 'Close',
@@ -54,6 +74,12 @@ const en = {
       category: 'Category',
       source: 'Source',
       reviewedOn: 'Reviewed',
+      visitors: 'Annual visitors',
+      visitorsEstimate: 'estimated',
+      visitorsProvisional: 'Provisional estimate — not yet verified.',
+      bestTime: 'Best time to visit',
+      story: 'Place story',
+      sourceLink: 'Visit source',
     },
   },
   categories: {
@@ -71,6 +97,8 @@ const en = {
     mapRegion: 'Interactive map of Syria',
     drawerExpand: 'Expand information panel',
     drawerCollapse: 'Collapse information panel',
+    monthsLabel: 'Recommended months',
+    decorativePlaceholder: 'Decorative place illustration',
   },
 }
 

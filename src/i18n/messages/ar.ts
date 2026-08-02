@@ -29,10 +29,29 @@ const ar: MessageSchema = {
     selected: 'محدد: {name}',
   },
   panel: {
+    sheet: {
+      explore: 'استكشف',
+    },
+    mode: {
+      overview: 'لمحة عن سوريا',
+      governorate: 'معالم المحافظة',
+      comingSoon: 'لمحة عن المحافظة',
+      attraction: 'حكاية المعلم',
+    },
     overview: {
-      title: 'استكشف سوريا',
-      intro: 'اختر محافظة من الخريطة لاكتشاف معالمها الثقافية والتاريخية.',
-      hint: 'تلميح: اختر منطقة على الخريطة أو من القائمة.',
+      title: 'أهلاً بك في تِرحال',
+      intro: 'تِرحال دليل إلى المعالم الثقافية والتاريخية في سوريا، مرسومة محافظةً محافظةً.',
+      howItWorks: 'كيف يعمل',
+      step1: 'اختر محافظة على الخريطة.',
+      step2: 'استعرض المعالم المنشورة فيها.',
+      step3: 'افتح أحدها لترى الصور وأعداد الزوار وأفضل وقت للزيارة.',
+      hint: 'أربع محافظات متاحة اليوم، والمزيد في الطريق.',
+      eyebrow: 'أطلس ثقافي حيّ',
+      prompt: 'اختر مكاناً على الخريطة لتبدأ',
+      coverage: '٤ مناطق منسّقة',
+      regionList: 'تصفّح الأطلس',
+      available: 'استكشف',
+      soon: 'قريباً',
     },
     governorate: {
       attractions: 'المعالم السياحية',
@@ -44,6 +63,7 @@ const ar: MessageSchema = {
       title: 'قريبًا',
       message: 'يجري تجهيز معالم منسّقة لـ {name}. عُد لاحقًا.',
       back: 'العودة إلى لمحة عامة',
+      eyebrow: 'الأطلس يكبر',
     },
     attraction: {
       close: 'إغلاق',
@@ -51,6 +71,12 @@ const ar: MessageSchema = {
       category: 'الفئة',
       source: 'المصدر',
       reviewedOn: 'تاريخ المراجعة',
+      visitors: 'الزوار سنوياً',
+      visitorsEstimate: 'تقديري',
+      visitorsProvisional: 'تقدير مؤقت — لم يُتحقق منه بعد.',
+      bestTime: 'أفضل وقت للزيارة',
+      story: 'حكاية المكان',
+      sourceLink: 'زيارة المصدر',
     },
   },
   categories: {
@@ -68,6 +94,8 @@ const ar: MessageSchema = {
     mapRegion: 'خريطة تفاعلية لسوريا',
     drawerExpand: 'توسيع لوحة المعلومات',
     drawerCollapse: 'طيّ لوحة المعلومات',
+    monthsLabel: 'الأشهر المقترحة',
+    decorativePlaceholder: 'رسم زخرفي للمكان',
   },
 }
 
