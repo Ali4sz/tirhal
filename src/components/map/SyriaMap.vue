@@ -14,7 +14,7 @@
  * single ResizeObserver scheduled via requestAnimationFrame to avoid layout
  * thrashing.
  */
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, shallowRef, useTemplateRef, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import OlMap from 'ol/Map'
 import View from 'ol/View'
@@ -53,7 +53,7 @@ const {
 
 const governorates = getGovernorates()
 
-const mapEl = ref<HTMLDivElement | null>(null)
+const mapEl = useTemplateRef<HTMLDivElement>('mapEl')
 
 // OpenLayers instances (created in onMounted, torn down in onBeforeUnmount).
 let map: OlMap | null = null
@@ -64,7 +64,8 @@ let markerSource: VectorSource | null = null
 let resizeObserver: ResizeObserver | null = null
 let resizeRaf = 0
 let motionMql: MediaQueryList | null = null
-const reducedMotion = ref(false)
+const reducedMotion = shallowRef(false)
+const hoverAttractionId = shallowRef<string | null>(null)
 
 // Domain metadata keyed by pcode, for labels and coverage-aware styling.
 const govByPcode = new Map<string, Governorate>(governorates.map((g) => [g.pcode, g]))
@@ -134,24 +135,73 @@ function governorateStyle(feature: FeatureLike): Style {
   })
 }
 
-function markerStyle(): Style {
-  return new Style({
-    image: new CircleStyle({
-      radius: 7,
-      fill: new Fill({ color: MAP_COLORS.primary }),
-      stroke: new Stroke({ color: MAP_COLORS.white, width: 2 }),
+function markerStyle(feature: FeatureLike): Style[] {
+  const id = feature.getId()
+  const selected = id === selectedAttractionId.value
+  const hovered = id === hoverAttractionId.value
+  const category = feature.get('category') as Attraction['category'] | undefined
+  const categoryGlyph: Record<Attraction['category'], string> = {
+    archaeology: 'A',
+    historical: 'H',
+    landmark: 'L',
+    market: 'M',
+    museum: 'M',
+    nature: 'N',
+    religious: 'R',
+  }
+
+  const styles: Style[] = []
+  if (selected || hovered) {
+    styles.push(
+      new Style({
+        image: new CircleStyle({
+          radius: selected ? 18 : 15,
+          fill: new Fill({ color: MAP_COLORS.primaryAlpha(selected ? 0.18 : 0.12) }),
+          stroke: new Stroke({ color: MAP_COLORS.primaryAlpha(0.35), width: 1 }),
+        }),
+      }),
+    )
+  }
+
+  styles.push(
+    new Style({
+      image: new CircleStyle({
+        radius: selected ? 11 : hovered ? 10 : 8,
+        fill: new Fill({ color: selected ? MAP_COLORS.secondary : MAP_COLORS.primary }),
+        stroke: new Stroke({ color: MAP_COLORS.white, width: 3 }),
+      }),
+      text: new Text({
+        text: category ? categoryGlyph[category] : '•',
+        font: `700 ${selected ? 9 : 8}px system-ui, sans-serif`,
+        fill: new Fill({ color: MAP_COLORS.white }),
+      }),
+      zIndex: selected ? 12 : hovered ? 11 : 10,
     }),
-  })
+  )
+  return styles
 }
 
 // ---------------------------------------------------------------------------
 // View fitting / centering
 // ---------------------------------------------------------------------------
+function getViewPadding(): [number, number, number, number] {
+  const base = 56
+  const panel = document.querySelector<HTMLElement>('.tirhal-app__panel')
+  if (!panel || !panel.matches('.tirhal-app__panel--expanded')) return [base, base, base, base]
+  const panelRect = panel.getBoundingClientRect()
+  if (window.innerWidth < 600)
+    return [base, base, Math.min(panelRect.height + 24, window.innerHeight * 0.72), base]
+  const onLeft = panelRect.left < window.innerWidth / 2
+  return onLeft
+    ? [base, base, base, Math.min(panelRect.width + 32, window.innerWidth * 0.48)]
+    : [base, Math.min(panelRect.width + 32, window.innerWidth * 0.48), base, base]
+}
+
 function fitToExtent(extent: Extent | null, animate: boolean): void {
   if (!map || !extent) return
   const view = map.getView()
   view.fit(extent, {
-    padding: [48, 48, 48, 48],
+    padding: getViewPadding(),
     duration: animate && !reducedMotion.value ? 600 : 0,
     maxZoom: 11,
   })
@@ -202,16 +252,34 @@ let lastHoverPcode: string | null = null
 let hoverRequest = 0
 
 async function handlePointerMove(evt: MapBrowserEvent): Promise<void> {
+  if (evt.dragging) return
   const request = ++hoverRequest
+  const markerFeatures = markerLayer ? await markerLayer.getFeatures(evt.pixel) : []
+  if (request !== hoverRequest) return
+  const markerId = markerFeatures[0]?.getId()
+  const nextAttractionId = typeof markerId === 'string' ? markerId : null
+  if (nextAttractionId !== hoverAttractionId.value) {
+    hoverAttractionId.value = nextAttractionId
+    markerLayer?.changed()
+  }
   const features = governorateLayer ? await governorateLayer.getFeatures(evt.pixel) : []
   if (request !== hoverRequest) return
 
   const found = (features[0]?.get('adm1_pcode') as string | undefined) ?? null
   if (found !== lastHoverPcode) {
     lastHoverPcode = found
-    if (mapEl.value) mapEl.value.style.cursor = found ? 'pointer' : ''
+    if (mapEl.value) mapEl.value.style.cursor = found || nextAttractionId ? 'pointer' : ''
     setHoverGovernorate(found)
   }
+}
+
+function clearPointerState(): void {
+  hoverRequest += 1
+  lastHoverPcode = null
+  hoverAttractionId.value = null
+  setHoverGovernorate(null)
+  markerLayer?.changed()
+  if (mapEl.value) mapEl.value.style.cursor = ''
 }
 
 function handleMotionPreferenceChange(event: MediaQueryListEvent): void {
@@ -273,6 +341,7 @@ onMounted(() => {
 
   map.on('singleclick', handleClick)
   map.on('pointermove', handlePointerMove)
+  map.getViewport().addEventListener('pointerleave', clearPointerState)
 
   // Honor the user's motion preference for map animations.
   motionMql = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -317,6 +386,7 @@ onBeforeUnmount(() => {
   resizeObserver = null
   motionMql?.removeEventListener('change', handleMotionPreferenceChange)
   if (map) {
+    map.getViewport().removeEventListener('pointerleave', clearPointerState)
     map.setTarget(undefined)
     map = null
   }
@@ -334,6 +404,8 @@ watch(
   () => governorateLayer?.changed(),
 )
 
+watch(selectedAttractionId, () => markerLayer?.changed())
+
 watch(
   visibleAttractions,
   (list) => {
@@ -342,6 +414,7 @@ watch(
     for (const attraction of list) {
       const feature = new Feature({
         geometry: new Point(fromLonLat([attraction.coordinate.lon, attraction.coordinate.lat])),
+        category: attraction.category,
       })
       feature.setId(attraction.id)
       markerSource.addFeature(feature)
@@ -351,7 +424,7 @@ watch(
 )
 
 watch(selectedGovernorateId, (id) => {
-  if (id) fitToGovernorate(id)
+  if (id && !selectedAttractionId.value) fitToGovernorate(id)
   else if (governorateSource) fitToExtent(governorateSource.getExtent(), true)
 })
 
@@ -360,8 +433,14 @@ watch(locateNonce, () => centerOnAttraction())
 </script>
 
 <template>
-  <div class="tirhal-map-wrap">
-    <div ref="mapEl" class="tirhal-map" tabindex="0" :aria-label="ariaLabel"></div>
+  <div class="tirhal-map-wrap" data-testid="map-root">
+    <div
+      id="tirhal-map-canvas"
+      ref="mapEl"
+      class="tirhal-map"
+      tabindex="0"
+      :aria-label="ariaLabel"
+    ></div>
 
     <MapControls
       :zoom-in-label="t('map.zoomIn')"
