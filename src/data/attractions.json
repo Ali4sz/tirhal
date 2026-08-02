@@ -9,8 +9,23 @@
     },
     "category": "religious",
     "coordinate": { "lon": 36.3047, "lat": 33.5118 },
+    "visitors": {
+      "annual": 1200000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -25,8 +40,23 @@
     },
     "category": "historical",
     "coordinate": { "lon": 36.293, "lat": 33.5115 },
+    "visitors": {
+      "annual": 320000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -41,8 +71,26 @@
     },
     "category": "market",
     "coordinate": { "lon": 36.3015, "lat": 33.5095 },
+    "visitors": {
+      "annual": 950000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [1, 2, 3, 4, 5, 10, 11, 12],
+      "label": {
+        "en": "Year-round; covered market stays shaded in summer",
+        "ar": "على مدار السنة؛ السوق المسقوف يبقى مظللاً في الصيف"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -57,8 +105,23 @@
     },
     "category": "museum",
     "coordinate": { "lon": 36.296, "lat": 33.5108 },
+    "visitors": {
+      "annual": 180000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -73,8 +136,26 @@
     },
     "category": "landmark",
     "coordinate": { "lon": 37.298, "lat": 35.313 },
+    "visitors": {
+      "annual": 240000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [4, 5, 6],
+      "label": {
+        "en": "Late spring, when the Orontes runs high and the wheels turn",
+        "ar": "أواخر الربيع، حين يرتفع منسوب العاصي وتدور النواعير"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -89,8 +170,26 @@
     },
     "category": "historical",
     "coordinate": { "lon": 37.305, "lat": 35.31 },
+    "visitors": {
+      "annual": 85000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 10, 11],
+      "label": {
+        "en": "Spring and autumn; the open mound offers little shade",
+        "ar": "الربيع والخريف؛ التلّ المكشوف قليل الظلّ"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -105,8 +204,23 @@
     },
     "category": "religious",
     "coordinate": { "lon": 37.3, "lat": 35.308 },
+    "visitors": {
+      "annual": 110000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -121,8 +235,26 @@
     },
     "category": "museum",
     "coordinate": { "lon": 37.302, "lat": 35.312 },
+    "visitors": {
+      "annual": 45000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "label": {
+        "en": "Year-round; indoor galleries suit the summer heat",
+        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لحرّ الصيف"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -137,8 +269,23 @@
     },
     "category": "religious",
     "coordinate": { "lon": 38.209, "lat": 34.466 },
+    "visitors": {
+      "annual": 400000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -153,8 +300,26 @@
     },
     "category": "historical",
     "coordinate": { "lon": 38.205, "lat": 34.465 },
+    "visitors": {
+      "annual": 60000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 10, 11],
+      "label": {
+        "en": "Spring and autumn; the open mound offers little shade",
+        "ar": "الربيع والخريف؛ التلّ المكشوف قليل الظلّ"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -169,8 +334,26 @@
     },
     "category": "historical",
     "coordinate": { "lon": 36.2936, "lat": 34.6908 },
+    "visitors": {
+      "annual": 520000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [4, 5, 6, 9, 10],
+      "label": {
+        "en": "Spring and early autumn; hilltop fog and rain are common in winter",
+        "ar": "الربيع وأوائل الخريف؛ الضباب والمطر شائعان على القمة في الشتاء"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -185,8 +368,26 @@
     },
     "category": "museum",
     "coordinate": { "lon": 38.21, "lat": 34.467 },
+    "visitors": {
+      "annual": 38000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "label": {
+        "en": "Year-round; indoor galleries suit the summer heat",
+        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لحرّ الصيف"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -201,8 +402,23 @@
     },
     "category": "nature",
     "coordinate": { "lon": 35.99, "lat": 35.58 },
+    "visitors": {
+      "annual": 780000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [6, 7, 8, 9],
+      "label": { "en": "Summer, the peak coastal season", "ar": "الصيف، ذروة الموسم الساحلي" }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -217,8 +433,26 @@
     },
     "category": "archaeology",
     "coordinate": { "lon": 35.945, "lat": 35.598 },
+    "visitors": {
+      "annual": 95000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [4, 5, 9, 10, 11],
+      "label": {
+        "en": "Spring and autumn; the excavation site is exposed and humid in summer",
+        "ar": "الربيع والخريف؛ الموقع الأثري مكشوف ورطب في الصيف"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -233,8 +467,26 @@
     },
     "category": "museum",
     "coordinate": { "lon": 35.988, "lat": 35.58 },
+    "visitors": {
+      "annual": 32000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "label": {
+        "en": "Year-round; indoor galleries suit the humid coastal summer",
+        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لصيف الساحل الرطب"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
@@ -249,8 +501,26 @@
     },
     "category": "archaeology",
     "coordinate": { "lon": 35.92, "lat": 35.62 },
+    "visitors": {
+      "annual": 41000,
+      "confidence": "provisional",
+      "note": {
+        "en": "Provisional placeholder figure — pending editorial review",
+        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
+      }
+    },
+    "bestTimeToVisit": {
+      "months": [4, 5, 9, 10, 11],
+      "label": {
+        "en": "Spring and autumn; the coastal site is exposed at midday",
+        "ar": "الربيع والخريف؛ الموقع الساحلي مكشوف عند الظهيرة"
+      }
+    },
     "source": {
-      "label": { "en": "Representative seed data — pending editorial review", "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية" },
+      "label": {
+        "en": "Representative seed data — pending editorial review",
+        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
+      },
       "note": "Coordinates approximate; replace with approved curated content before release."
     },
     "reviewedOn": "2026-07-15"
