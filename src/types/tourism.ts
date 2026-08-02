@@ -52,6 +52,27 @@ export interface ImageMeta {
   alt: LocalizedText
 }
 
+/**
+ * Confidence in a quantitative estimate. `provisional` figures are seed values
+ * awaiting editorial review and MUST be surfaced with their caveat note.
+ */
+export type EstimateConfidence = 'verified' | 'provisional'
+
+export interface VisitorEstimate {
+  /** Approximate annual visitors. */
+  annual: number
+  confidence: EstimateConfidence
+  /** Bilingual provenance/caveat shown beneath the figure. */
+  note: LocalizedText
+}
+
+export interface BestTimeToVisit {
+  /** Calendar months (1-12) that are good to visit; rendered as chips. */
+  months: readonly number[]
+  /** Bilingual season summary, e.g. "Spring and autumn". */
+  label: LocalizedText
+}
+
 export interface SourceRef {
   label: LocalizedText
   url?: string
@@ -68,6 +89,10 @@ export interface Attraction {
   coordinate: Coordinate
   /** Optional; omitted entirely when no approved media exists. */
   image?: ImageMeta
+  /** Optional; omitted when no visitor figure has been sourced yet. */
+  visitors?: VisitorEstimate
+  /** Optional; omitted when no seasonal guidance has been curated yet. */
+  bestTimeToVisit?: BestTimeToVisit
   source: SourceRef
   /** ISO date (YYYY-MM-DD) of the last editorial review. */
   reviewedOn: string
