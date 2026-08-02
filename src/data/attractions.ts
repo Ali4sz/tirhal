@@ -7,7 +7,18 @@
  */
 
 import records from '@/data/attractions.json'
-import type { Attraction, AttractionCategory, ImageMeta, LocalizedText, SourceRef } from '@/types/tourism'
+import type {
+  Attraction,
+  AttractionCategory,
+  BestTimeToVisit,
+  EstimateConfidence,
+  ImageMeta,
+  LocalizedText,
+  SourceRef,
+  VisitorEstimate,
+} from '@/types/tourism'
+
+const CONFIDENCES = new Set<EstimateConfidence>(['verified', 'provisional'])
 
 const CATEGORIES = new Set<AttractionCategory>([
   'historical',
@@ -40,6 +51,31 @@ function isImageMeta(value: unknown): value is ImageMeta {
   return isRecord(value) && typeof value.src === 'string' && isLocalizedText(value.alt)
 }
 
+function isVisitorEstimate(value: unknown): value is VisitorEstimate {
+  return (
+    isRecord(value) &&
+    typeof value.annual === 'number' &&
+    Number.isFinite(value.annual) &&
+    value.annual >= 0 &&
+    typeof value.confidence === 'string' &&
+    CONFIDENCES.has(value.confidence as EstimateConfidence) &&
+    isLocalizedText(value.note)
+  )
+}
+
+function isBestTimeToVisit(value: unknown): value is BestTimeToVisit {
+  return (
+    isRecord(value) &&
+    Array.isArray(value.months) &&
+    value.months.length > 0 &&
+    // Reject out-of-range months so a bad record cannot render an empty chip row.
+    value.months.every(
+      (month) => typeof month === 'number' && Number.isInteger(month) && month >= 1 && month <= 12,
+    ) &&
+    isLocalizedText(value.label)
+  )
+}
+
 function isAttraction(value: unknown): value is Attraction {
   return (
     isRecord(value) &&
@@ -55,6 +91,8 @@ function isAttraction(value: unknown): value is Attraction {
     typeof value.coordinate.lat === 'number' &&
     Number.isFinite(value.coordinate.lat) &&
     (value.image === undefined || isImageMeta(value.image)) &&
+    (value.visitors === undefined || isVisitorEstimate(value.visitors)) &&
+    (value.bestTimeToVisit === undefined || isBestTimeToVisit(value.bestTimeToVisit)) &&
     isSourceRef(value.source) &&
     typeof value.reviewedOn === 'string' &&
     /^\d{4}-\d{2}-\d{2}$/.test(value.reviewedOn)
