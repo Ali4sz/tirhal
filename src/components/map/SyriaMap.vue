@@ -19,9 +19,9 @@ import { useI18n } from 'vue-i18n'
 import OlMap from 'ol/Map'
 import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
+import OSM from 'ol/source/OSM'
 import GeoJSON from 'ol/format/GeoJSON'
 import { fromLonLat } from 'ol/proj'
 import { Feature } from 'ol'
@@ -112,12 +112,12 @@ function governorateStyle(feature: FeatureLike): Style {
   const supported = gov?.coverage === 'supported'
 
   const fillColor = isSelected
-    ? MAP_COLORS.primaryAlpha(0.38)
+    ? MAP_COLORS.primaryAlpha(0.42)
     : isHovered
-      ? MAP_COLORS.primaryAlpha(0.22)
+      ? MAP_COLORS.primaryAlpha(0.28)
       : supported
-        ? `${MAP_COLORS.surfaceContainer}cc` // ~80% alpha
-        : `${MAP_COLORS.surfaceContainer}99` // ~60% alpha
+        ? `${MAP_COLORS.surfaceContainer}f5` // ~96% alpha
+        : `${MAP_COLORS.surfaceContainer}e6` // ~90% alpha
 
   return new Style({
     fill: new Fill({ color: fillColor }),
@@ -315,26 +315,18 @@ onMounted(() => {
   markerSource = new VectorSource()
   markerLayer = new VectorLayer({ source: markerSource, style: markerStyle })
 
-  // Basemap: CARTO Positron (no labels). Boundary-free so our governorate
-  // borders are the sole authoritative lines on screen.
-  // Attribution required by CARTO (terms: carto.com/legal) and ODbL.
+  // Basemap: OpenStreetMap standard tiles. Sits beneath the governorate
+  // polygons and attraction markers. Attribution is rendered by Tirhal's
+  // own edition chrome (the native ol-attribution control is disabled).
   const osmLayer = new TileLayer({
-    source: new XYZ({
-      urls: [
-        'https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
-        'https://b.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
-        'https://c.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
-        'https://d.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
-      ],
-      attributions:
-        '© <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a> · ' +
-        '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>',
-      maxZoom: 20,
+    source: new OSM({
+      attributions: '© OpenStreetMap contributors',
     }),
   })
 
   map = new OlMap({
     target: mapEl.value ?? undefined,
+    controls: [],
     layers: [osmLayer, governorateLayer, markerLayer],
     view: new View({ center: fromLonLat([38, 35]), zoom: 6 }),
   })
@@ -457,5 +449,12 @@ watch(locateNonce, () => centerOnAttraction())
       :hover-label="t('map.hover')"
       :selected-label="t('map.selected')"
     />
+
+    <div class="tirhal-map-edition" aria-hidden="true">35°N · 38°E</div>
+    <div class="tirhal-map-attribution" aria-label="Map data attribution">
+      <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
+        >© OpenStreetMap contributors</a
+      >
+    </div>
   </div>
 </template>
