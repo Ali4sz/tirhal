@@ -26,6 +26,5 @@ const { t } = useI18n()
         <span class="tirhal-brand__tagline">{{ t('app.tagline') }}</span>
       </span>
     </div>
-    <span class="tirhal-app__edition" aria-hidden="true">35°N · 38°E</span>
   </header>
 </template>
