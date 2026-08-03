@@ -16,17 +16,26 @@ function governorateButton(page: Page, id: string) {
 test('full discovery journey and Arabic RTL', async ({ page }) => {
   const errors: string[] = []
   const warnings: string[] = []
+  const osmRequests: string[] = []
+  const cartoRequests: string[] = []
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text())
     if (message.type() === 'warning') warnings.push(message.text())
   })
   page.on('pageerror', (error) => errors.push(error.message))
+  page.on('request', (request) => {
+    if (request.url().includes('tile.openstreetmap.org')) osmRequests.push(request.url())
+    if (request.url().includes('basemaps.cartocdn.com')) cartoRequests.push(request.url())
+  })
 
   await page.goto('/')
   await waitForMap(page)
 
   await expect(page.getByRole('heading', { name: 'Welcome to Tirhal' })).toBeVisible()
   await expect(page.getByRole('main', { name: 'Interactive map of Syria' })).toBeVisible()
+  await expect(page.locator('.ol-zoom')).toHaveCount(0)
+  await expect(page.locator('.ol-attribution')).toHaveCount(0)
+  await expect(page.locator('.tirhal-map-edition')).toHaveText('35°N · 38°E')
 
   await governorateButton(page, COMING_SOON_GOVERNORATE_ID).click()
   await expect(page.getByRole('heading', { name: 'Coming soon' })).toBeVisible()
@@ -59,6 +68,8 @@ test('full discovery journey and Arabic RTL', async ({ page }) => {
 
   expect(errors, `console/page errors:\n${errors.join('\n')}`).toEqual([])
   expect(warnings.filter((warning) => warning.includes('willReadFrequently'))).toEqual([])
+  expect(cartoRequests).toEqual([])
+  expect(osmRequests.length).toBeGreaterThan(0)
 })
 
 test('desktop editorial surface collapses and reopens', async ({ page }) => {
