@@ -111,7 +111,7 @@
   --tirhal-color-parchment-deep: #f3dfc4;
   --tirhal-color-clay-dark: #7f321f;
   --tirhal-color-sun: #f0ad53;
-  --tirhal-color-map-water: #eee2cf;
+  --tirhal-color-map-water: #d9c9a8;
   --tirhal-scrim: rgba(42, 24, 16, 0.12);
   --tirhal-shadow-float: 0 24px 70px rgba(74, 37, 20, 0.18), 0 4px 18px rgba(74, 37, 20, 0.1);
   --tirhal-shadow-control: 0 8px 24px rgba(65, 31, 18, 0.16);
@@ -477,6 +477,7 @@ a {
   position: relative;
   block-size: 100%;
   inline-size: 100%;
+  overflow: hidden;
 }
 
 .tirhal-map {
@@ -1751,7 +1752,9 @@ a {
 }
 
 .tirhal-map {
-  background: var(--tirhal-color-map-water);
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(255, 250, 241, 0.18) 0%, transparent 62%),
+    var(--tirhal-color-map-water);
   filter: sepia(0.08) saturate(0.86) contrast(1.02);
 }
 
@@ -1809,6 +1812,51 @@ a {
   border: 2px solid var(--md-sys-color-primary-container);
   border-radius: 50%;
   box-shadow: 0 0 0 3px rgba(199, 91, 57, 0.16);
+}
+
+.tirhal-map-edition {
+  position: absolute;
+  inset-block-end: 1.1rem;
+  inset-inline-end: 1.2rem;
+  z-index: var(--tirhal-z-overlay);
+  padding: 0.55rem 0.75rem;
+  color: var(--tirhal-color-ink-soft);
+  background: rgba(255, 250, 241, 0.82);
+  border: 1px solid rgba(127, 50, 31, 0.1);
+  border-radius: 999px;
+  box-shadow: 0 5px 18px rgba(74, 37, 20, 0.1);
+  backdrop-filter: blur(8px);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tirhal-map-attribution {
+  position: absolute;
+  inset-block-end: 0.35rem;
+  inset-inline-start: 0.6rem;
+  z-index: var(--tirhal-z-overlay);
+  font-size: 0.6rem;
+  color: var(--tirhal-color-ink-soft);
+  opacity: 0.85;
+}
+.tirhal-map-attribution a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(127, 50, 31, 0.25);
+}
+.tirhal-map-attribution a:hover {
+  color: var(--tirhal-color-ink);
+  border-bottom-color: var(--tirhal-color-ink);
+}
+
+.tirhal-map-edition span {
+  color: var(--md-sys-color-primary);
+}
+
+[dir='rtl'] .tirhal-map-edition {
+  letter-spacing: 0;
 }
 
 .tirhal-map .ol-attribution {
@@ -1996,6 +2044,12 @@ a {
 
   .tirhal-map .ol-attribution {
     inset-block-end: calc(4.5rem + env(safe-area-inset-bottom) + 0.55rem);
+  }
+
+  .tirhal-map-edition {
+    inset-block-end: calc(4.5rem + env(safe-area-inset-bottom) + 0.75rem);
+    inset-inline-end: 0.75rem;
+    font-size: 0.58rem;
   }
 
   .tirhal-app__panel--expanded ~ * {
