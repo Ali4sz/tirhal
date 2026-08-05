@@ -48,12 +48,14 @@ test('full discovery journey and Arabic RTL', async ({ page }) => {
 
   await expect(page.getByRole('button', { name: 'Locate on map' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Close' })).toBeVisible()
-  await expect(page.getByText('Annual visitors', { exact: true })).toBeVisible()
-  await expect(page.locator('.tirhal-stat__note')).toBeVisible()
+  await expect(page.locator('.tirhal-attraction-image')).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Best time to visit' })).toBeVisible()
-  await expect(page.locator('.tirhal-placeholder')).toBeVisible()
+  await expect(page.locator('.tirhal-attraction-meta')).toBeVisible()
 
   await page.getByRole('button', { name: 'Locate on map' }).click()
+  // The locate action must zoom in to reveal the exact location (zoom 14),
+  // beyond the contextual zoom 12 used when the attraction was selected.
+  await expect(page.getByTestId('map-root')).toHaveAttribute('data-zoom', '14')
   await page.getByRole('button', { name: 'Close' }).click()
   await expect(firstAttraction).toBeVisible()
   await page.getByRole('button', { name: 'Back to overview' }).click()
