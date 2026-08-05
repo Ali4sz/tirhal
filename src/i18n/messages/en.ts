@@ -47,7 +47,7 @@ const en = {
       howItWorks: 'How it works',
       step1: 'Select a governorate on the map.',
       step2: 'Browse the attractions published for it.',
-      step3: 'Open one to see photos, visitor numbers, and the best time to go.',
+      step3: 'Open one to see photos, and the best time to go.',
       hint: 'Four governorates are available today; more are on the way.',
       eyebrow: 'A living cultural atlas',
       prompt: 'Choose a place on the map to begin',
