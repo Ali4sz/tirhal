@@ -29,6 +29,9 @@ const selectedAttractionId = ref<string | null>(null)
 const hoverGovernorateId = ref<GovernorateId | null>(null)
 // Bumped to ask the map to (re)center on the active attraction.
 const locateNonce = ref(0)
+// Bumped ONLY by the explicit "Locate on map" action, so the map can zoom in
+// further to reveal the exact location (distinct from selection centering).
+const locateRequestNonce = ref(0)
 
 const selectedGovernorate = computed<Governorate | undefined>(() =>
   selectedGovernorateId.value ? getGovernorateById(selectedGovernorateId.value) : undefined,
@@ -72,7 +75,7 @@ function selectAttraction(id: string): void {
 
 /** Request the map to (re)center on the currently selected attraction. */
 function requestLocate(): void {
-  if (selectedAttractionId.value) locateNonce.value++
+  if (selectedAttractionId.value) locateRequestNonce.value++
 }
 
 function clearAttractionSelection(): void {
@@ -95,6 +98,7 @@ export function useDiscoveryState() {
     selectedAttractionId,
     hoverGovernorateId,
     locateNonce,
+    locateRequestNonce,
     selectedGovernorate,
     selectedAttraction,
     visibleAttractions,
