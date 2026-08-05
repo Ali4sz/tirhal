@@ -19,6 +19,7 @@ coverage
 .reports
 .opencode
 .claude
+.data
 
 # Editor directories and files
 .vscode/*
