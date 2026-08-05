@@ -255,6 +255,8 @@ The attractions dataset has been collected manually and may not be complete or f
 
 Governorate boundaries and geographic data are sourced from OpenStreetMap and may not represent official administrative boundaries.
 
+you can take a look at [Tirhal](https://tirhal.ali6s.workers.dev/)
+
 ---
 
 ## 🤝 Contributing
