@@ -25,6 +25,8 @@ Instead of searching for places manually, users can visually explore Syria by cl
 
 The main goal of the project is to **simplify tourism**, encourage people to explore different places, and provide useful information in a single interactive interface.
 
+you can take a look at [Tirhal](https://tirhal.ali6s.workers.dev/)
+
 ---
 
 ## ✨ Features
@@ -105,25 +107,6 @@ The project uses:
 
 The attractions dataset is currently prepared manually as part of the proof of concept.
 
----
-
-## 📸 Preview
-
-<!-- Replace these with actual screenshots of your project -->
-
-<table>
-  <tr>
-    <td>
-      <img src="./docs/screenshot-map.png" alt="Tirhal map view" width="100%" />
-    </td>
-    <td>
-      <img src="./docs/screenshot-attractions.png" alt="Tirhal attractions view" width="100%" />
-    </td>
-  </tr>
-</table>
-
----
-
 ## 🚀 Getting Started
 
 This section explains how to run the project locally.
@@ -185,19 +168,88 @@ Preview the production build locally:
 npm run preview
 ```
 
----
-
 ## 🧩 How It Works
 
-At a high level, the application works as follows:
+Tirhal follows a **map-first** approach: the map is the main interface, while the side panel reflects the user’s current selection.
 
-1. **OpenLayers** renders an OpenStreetMap base layer
-2. Governorate boundary data from OpenStreetMap is drawn as an overlay
-3. The user interacts with the map by clicking on a governorate
-4. The application displays attractions related to the selected governorate
-5. Attraction details are shown to the user
+The experience is built around a simple loop:
 
-This allows the project to provide a simple but effective map-driven browsing experience.
+```text
+Load data → Render map → User interacts → State updates → UI reacts
+```
+
+---
+
+### 🔄 Discovery Flow
+
+1. **Load**  
+   The app loads Syria’s governorate boundaries and the attraction catalog.
+
+2. **Render**  
+   OpenLayers renders the OpenStreetMap base layer, then adds:
+  - governorate borders,
+  - governorate labels,
+  - attraction markers.
+
+3. **Interact**  
+   The user can:
+  - click a governorate,
+  - click an attraction marker,
+  - or choose a governorate from the side panel.
+
+4. **Update state**  
+   The selection is stored in a shared discovery store, which acts as the single source of truth.
+
+5. **React**  
+   The map zooms or pans to the selected area, and the side panel switches to the relevant view.
+
+---
+
+### 🗃️ Data
+
+- **Base map:** OpenStreetMap tiles rendered with OpenLayers.
+- **Governorate boundaries:** geographic data sourced from OpenStreetMap.
+- **Attractions:** a manually curated bilingual dataset containing names, descriptions, locations, and additional visitor information.
+- **Coverage:** not all governorates have curated content yet. Governorates without attractions still appear on the map, but show a clear **“coming soon”** state.
+
+---
+
+### 🧠 State Management
+
+A single discovery store tracks the current state of the experience, including:
+
+- the selected governorate,
+- the selected attraction,
+- the hovered governorate,
+- and the active panel view.
+
+The map and the side panel do not communicate directly. Instead, both react to the same shared state. This keeps the interface predictable and makes future features easier to add.
+
+---
+
+### 🗺️ Map Interaction
+
+- Clicking a **governorate** selects it and shows its available attractions.
+- Clicking an **attraction marker** opens the attraction details.
+- Hovering over a governorate gives visual feedback.
+- Selecting a location updates both the map camera and the side panel.
+
+---
+
+### 📋 Side Panel
+
+The side panel complements the map and changes based on the current selection.
+
+It can show:
+
+- a general overview of Syria,
+- a list of governorates,
+- the attractions inside a selected governorate,
+- a “coming soon” view for governorates without content yet,
+- or detailed information about a selected attraction.
+
+On desktop, the panel is open by default.  
+On mobile, it stays collapsed to give the map more space and expands when the user makes a selection.
 
 ---
 
@@ -212,6 +264,8 @@ This includes information such as:
 - description
 - governorate association
 - other relevant details
+
+the used photos are sourced from wikimedia.
 
 The dataset is intentionally limited for now, since the project is still a demonstration prototype.
 
@@ -232,12 +286,12 @@ Since Tirhal is still a proof of concept, it currently has a few limitations:
 
 ---
 
-## 🛣️ Roadmap
+## 🛣️ may-add features
 
 Planned or possible future improvements include:
 
-- [ ] Add a **search bar**
-- [ ] Add **filtering** for attractions by type
+- [ ] A **search bar**
+- [ ] **Filtering** for attractions by type
 - [ ] Expand the attractions dataset
 - [ ] Improve attraction detail pages
 - [ ] Improve mobile responsiveness
@@ -254,23 +308,6 @@ Tirhal is currently a proof of concept and is provided for demonstration purpose
 The attractions dataset has been collected manually and may not be complete or fully up to date.
 
 Governorate boundaries and geographic data are sourced from OpenStreetMap and may not represent official administrative boundaries.
-
-you can take a look at [Tirhal](https://tirhal.ali6s.workers.dev/)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-If you would like to contribute:
-
-1. Fork the repository
-2. Create a new branch
-3. Make your changes
-4. Submit a pull request
-
-For major changes, it is recommended to open an issue first to discuss the change.
 
 ---
 
