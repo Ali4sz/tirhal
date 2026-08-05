@@ -46,6 +46,7 @@ const {
   visibleAttractions,
   selectedAttractionId,
   locateNonce,
+  locateRequestNonce,
   selectGovernorate,
   selectAttraction,
   setHoverGovernorate,
@@ -54,6 +55,7 @@ const {
 const governorates = getGovernorates()
 
 const mapEl = useTemplateRef<HTMLDivElement>('mapEl')
+const mapRootEl = useTemplateRef<HTMLDivElement>('mapRootEl')
 
 // OpenLayers instances (created in onMounted, torn down in onBeforeUnmount).
 let map: OlMap | null = null
@@ -213,15 +215,24 @@ function fitToGovernorate(pcode: GovernorateId): void {
   if (geom) fitToExtent(geom.getExtent(), true)
 }
 
-function centerOnAttraction(): void {
+function centerOnAttraction(zoom: number): void {
   if (!map || !selectedAttractionId.value) return
   const attraction = visibleAttractions.value.find((a) => a.id === selectedAttractionId.value)
   if (!attraction) return
   map.getView().animate({
     center: fromLonLat([attraction.coordinate.lon, attraction.coordinate.lat]),
-    zoom: 12,
+    zoom,
     duration: reducedMotion.value ? 0 : 500,
   })
+}
+
+// Expose the current zoom level as a data attribute on the map root so that
+// the live zoom state is observable (CSS/consumers, and deterministic e2e
+// verification of zoom-to-reveal). Updated whenever the view settles.
+function syncZoomAttr(): void {
+  if (!mapRootEl.value) return
+  const zoom = map?.getView().getZoom()
+  mapRootEl.value.dataset.zoom = zoom == null ? '' : String(Math.round(zoom * 100) / 100)
 }
 
 // ---------------------------------------------------------------------------
@@ -334,6 +345,7 @@ onMounted(() => {
   map.on('singleclick', handleClick)
   map.on('pointermove', handlePointerMove)
   map.getViewport().addEventListener('pointerleave', clearPointerState)
+  map.on('moveend', syncZoomAttr)
 
   // Honor the user's motion preference for map animations.
   motionMql = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -421,11 +433,15 @@ watch(selectedGovernorateId, (id) => {
 })
 
 // Center on the selected attraction whenever a locate is requested.
-watch(locateNonce, () => centerOnAttraction())
+watch(locateNonce, () => centerOnAttraction(12))
+
+// The explicit "Locate on map" action zooms in further to reveal the exact
+// location, distinct from the contextual centering on selection.
+watch(locateRequestNonce, () => centerOnAttraction(14))
 </script>
 
 <template>
-  <div class="tirhal-map-wrap" data-testid="map-root">
+  <div class="tirhal-map-wrap" data-testid="map-root" ref="mapRootEl">
     <div
       id="tirhal-map-canvas"
       ref="mapEl"
