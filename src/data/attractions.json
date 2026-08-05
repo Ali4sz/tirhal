@@ -5,7 +5,7 @@
     "name": { "en": "Umayyad Mosque", "ar": "الجامع الأموي" },
     "description": {
       "en": "The Umayyad Mosque, also called the Great Mosque of Damascus, is one of the largest and oldest mosques in the world. Located in the old city of Damascus, it was built between 705 and 715 CE by Caliph al-Walid I. The site has been a place of worship since the Iron Age, previously hosting temples to Hadad and Zeus. It is considered the fourth holiest site in Islam and houses the shrine believed to contain the head of John the Baptist. Its architecture blends Umayyad, Byzantine, and Roman influences with stunning mosaics and three minarets.",
-      "ar": "الجامع الأموي، المعروف أيضاً بجامع دمشق الكبير، من أكبر وأقدم المساجد في العالم. يقع في مدينة دمشق القديمة، وقد بناه الخليفة الوليد بن عبد الملك بين عامَي 705 و715 للميلاد. ظلّ الموقع مكاناً للعبادة منذ العصر الحديدي، حيث شهد معابد سابقة للإله حدد وزيوس. يُعد رابع أقدس المواقع في الإسلام ويضم ضريحاً يُعتقد أنه يضم رأس النبي يحيى. تزاوج عمارته بين الطراز الأموي والبيزنطي والروماني مع فسيفساء مذهلة وثلاث مآذن."
+      "ar": "الجامع الأموي، المعروف أيضاً بجامع دمشق الكبير، من أكبر وأقدم المساجد في العالم. يقع في مدينة دمشق القديمة، وقد بناه الخليفة الوليد بن عبد الملك بين عامَي 705 و715 للميلاد. ظلّ الموقع مكاناً للعبادة منذ العصر الحديدي، حيث شهد معابد سابقة للإله حدد وزيوس. يُعد رابع أقدس المواقع في الإسلام ويضم ضريحاً يُعتقد أنه يضم رأس النبي يحيى. تجمع عمارته بين كل من الطراز الأموي والبيزنطي والروماني مع فسيفساء مذهلة وثلاث مآذن."
     },
     "category": "religious",
     "coordinate": { "lon": 36.30667, "lat": 33.51139 },
@@ -35,7 +35,7 @@
     "category": "historical",
     "coordinate": { "lon": 36.302146, "lat": 33.511891 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Citadel_of_Damascus.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Damascus_Castle_Walls_1.jpg/960px-Damascus_Castle_Walls_1.jpg",
       "alt": { "en": "The Citadel of Damascus", "ar": "قلعة دمشق" }
     },
     "bestTimeToVisit": {
@@ -110,7 +110,7 @@
     "category": "religious",
     "coordinate": { "lon": 36.71559, "lat": 34.73678 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Homs_Khalid_Ibn_al-Walid_Mosque_3068.jpg/960px-Homs_Khalid_Ibn_al-Walid_Mosque_3068.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Homs_Khalid_Ibn_al-Walid_Mosque_3056.jpg/960px-Homs_Khalid_Ibn_al-Walid_Mosque_3056.jpg",
       "alt": { "en": "The Khalid ibn al-Walid Mosque in Homs", "ar": "جامع خالد بن الوليد في حمص" }
     },
     "bestTimeToVisit": {
@@ -160,7 +160,7 @@
     "category": "historical",
     "coordinate": { "lon": 36.2947, "lat": 34.757 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krak_des_Chevaliers.jpg/960px-Krak_des_Chevaliers.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Crac_des_chevaliers_syria.jpeg/960px-Crac_des_chevaliers_syria.jpeg",
       "alt": { "en": "Krak des Chevaliers", "ar": "قلعة الحصن" }
     },
     "bestTimeToVisit": {
@@ -185,7 +185,7 @@
     "category": "religious",
     "coordinate": { "lon": 36.267736, "lat": 34.767499 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Syria%2C_Homs%2C_Saint_George%27s_Monastery.jpg/960px-Syria%2C_Homs%2C_Saint_George%27s_Monastery.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Homs%2C_monast%C3%A8re_saint_georges_%28M%C3%A9diHAL_5096754%29.jpg/960px-Homs%2C_monast%C3%A8re_saint_georges_%28M%C3%A9diHAL_5096754%29.jpg",
       "alt": { "en": "Saint George Monastery in Wadi al-Nasara", "ar": "دير مار جرجس في وادي النصارى" }
     },
     "bestTimeToVisit": {
@@ -260,7 +260,7 @@
     "category": "historical",
     "coordinate": { "lon": 36.3433130, "lat": 35.0662424 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Masyaf_Castle.jpg/960px-Masyaf_Castle.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Masyaf_-_Gesamtansicht.jpg/960px-Masyaf_-_Gesamtansicht.jpg",
       "alt": { "en": "Masyaf Castle", "ar": "قلعة مصياف" }
     },
     "bestTimeToVisit": {
@@ -283,9 +283,9 @@
       "ar": "وادي العيون، أي وادي الينابيع، بلدة في شمال غرب سوريا في محافظة حماة، غرب مدينة حماة. وهي وجهة سياحية شهيرة تشتهر بينابيعها الخلابة وشلالاتها وصخورها المكسوة بالطحالب الخضراء التي أكسبتها لقب «القبعة الخضراء». يمكن للزوار اللعب في الشلالات وتسلق الصخور، وهي ميزة تميزها عن المواقع المماثلة. يمتد الوادي على مساحة كبيرة من الشرق إلى الغرب بارتفاعات تتراوح بين 450 و900 متر، وتكثر فيه بساتين التوت والبيوت المتناثرة على المنحدرات."
     },
     "category": "nature",
-    "coordinate": { "lon": 36.7155574, "lat":  34.7367821 },
+    "coordinate": { "lon": 36.202279, "lat":  35.001861 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Wadi_Al_%27Uyun.jpg/960px-Wadi_Al_%27Uyun.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Wadi_Al_%27Uyun_001.jpg/960px-Wadi_Al_%27Uyun_001.jpg",
       "alt": { "en": "Springs of Wadi al-Uyun", "ar": "ينابيع وادي العيون" }
     },
     "bestTimeToVisit": {
@@ -358,7 +358,7 @@
       "ar": "أوغاريت مدينة ساحلية قديمة في بلاد الشام، تبعد 10 كم شمال اللاذقية في رأس شمرة. استُوطن الموقع منذ الألفية الثامنة قبل الميلاد، وازدهر في العصر البرونزي المتأخر (نحو 1500–1200 ق.م) كمملكة أوغاريت. كشف الموقع عن أقدم أبجدية منظمة معروفة — نصوص أوغاريتية بلغة سامية شمالية غربية لم تكن معروفة سابقاً. كشفت الحفريات منذ عام 1928 عن معابد وقصر ملكي وآلاف الألواح المسمارية. ودُمرت المدينة نحو عام 1185 ق.م أثناء انهيار العصر البرونزي."
     },
     "category": "archaeology",
-    "coordinate": { "lon": 35.782, "lat": 35.602 },
+    "coordinate": { "lon": 35.785523, "lat": 35.602096 },
     "image": {
       "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ugarit_ras_shamra.jpg/960px-Ugarit_ras_shamra.jpg",
       "alt": { "en": "The archaeological site of Ugarit", "ar": "الموقع الأثري لأوغاريت" }
@@ -385,7 +385,7 @@
     "category": "nature",
     "coordinate": { "lon": 36.17861, "lat": 35.60028 },
     "image": {
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Slinfah_P1013409mod.jpg/960px-Slinfah_P1013409mod.jpg",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Slinfah.png/960px-Slinfah.png",
       "alt": { "en": "Mountain scenery in Slinfah", "ar": "المناظر الجبلية في صلنفة" }
     },
     "bestTimeToVisit": {
