@@ -1157,26 +1157,20 @@ a {
 .tirhal-brand__seal {
   display: grid;
   place-items: center;
-  inline-size: 3rem;
-  block-size: 3rem;
-  color: var(--md-sys-color-on-primary);
-  background: var(--md-sys-color-primary);
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 0.9rem 0.9rem 0.9rem 0.25rem;
   box-shadow: var(--tirhal-shadow-control);
-  transform: rotate(-3deg);
 }
 
-[dir='rtl'] .tirhal-brand__seal {
-  transform: rotate(3deg);
-}
-
+/* The logo draws its own multi-color strokes (terracotta rosette, brown
+   boat, amber sail) via CSS vars, so only size is set here. */
 .tirhal-brand__seal svg {
-  inline-size: 2rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  display: block;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
 }
 
 .tirhal-brand__copy {
@@ -1598,6 +1592,13 @@ a {
   border-radius: 0.85rem;
 }
 
+.tirhal-attraction-item__thumb {
+  inline-size: 5.2rem;
+  block-size: 4.75rem;
+  object-fit: cover;
+  border-radius: 0.85rem;
+}
+
 .tirhal-attraction-item:hover {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.9);
@@ -1939,6 +1940,10 @@ a {
   .tirhal-brand__seal {
     inline-size: 2.7rem;
     block-size: 2.7rem;
+  }
+  .tirhal-brand__seal svg {
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
   }
   .tirhal-brand__name {
     font-size: 1.4rem;
