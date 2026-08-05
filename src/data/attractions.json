@@ -4,525 +4,399 @@
     "governorateId": "SY01",
     "name": { "en": "Umayyad Mosque", "ar": "الجامع الأموي" },
     "description": {
-      "en": "A major early Islamic place of worship in the old city of Damascus, known for its vast courtyard and mosaic work.",
-      "ar": "مسجد كبير من أوائل مساجد الإسلام في مدينة دمشق القديمة، يتميّز بفسحته الواسعة وأعمال الفسيفساء."
+      "en": "The Umayyad Mosque, also called the Great Mosque of Damascus, is one of the largest and oldest mosques in the world. Located in the old city of Damascus, it was built between 705 and 715 CE by Caliph al-Walid I. The site has been a place of worship since the Iron Age, previously hosting temples to Hadad and Zeus. It is considered the fourth holiest site in Islam and houses the shrine believed to contain the head of John the Baptist. Its architecture blends Umayyad, Byzantine, and Roman influences with stunning mosaics and three minarets.",
+      "ar": "الجامع الأموي، المعروف أيضاً بجامع دمشق الكبير، من أكبر وأقدم المساجد في العالم. يقع في مدينة دمشق القديمة، وقد بناه الخليفة الوليد بن عبد الملك بين عامَي 705 و715 للميلاد. ظلّ الموقع مكاناً للعبادة منذ العصر الحديدي، حيث شهد معابد سابقة للإله حدد وزيوس. يُعد رابع أقدس المواقع في الإسلام ويضم ضريحاً يُعتقد أنه يضم رأس النبي يحيى. تزاوج عمارته بين الطراز الأموي والبيزنطي والروماني مع فسيفساء مذهلة وثلاث مآذن."
     },
     "category": "religious",
-    "coordinate": { "lon": 36.3047, "lat": 33.5118 },
-    "visitors": {
-      "annual": 1200000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.30667, "lat": 33.51139 },
+    "image": {
+      "src": "/images/umyyad1.jpg",
+      "alt": { "en": "The Umayyad Mosque in Damascus", "ar": "الجامع الأموي في دمشق" }
     },
     "bestTimeToVisit": {
-      "months": [3, 4, 5, 10, 11],
+      "months": [3, 4, 5, 9, 10, 11],
       "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Umayyad_Mosque",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "dam-citadel",
     "governorateId": "SY01",
     "name": { "en": "Citadel of Damascus", "ar": "قلعة دمشق" },
     "description": {
-      "en": "A historic fortified citadel occupying a prominent position in the center of old Damascus.",
-      "ar": "قلعة تاريخية محصّنة تتوسط موقعًا بارزًا في قلب دمشق القديمة."
+      "en": "The Citadel of Damascus is an Ayyubid-era medieval fortified palace and citadel in the heart of Damascus. Built between the 11th and 13th centuries, it is part of the UNESCO-listed Ancient City of Damascus. The rectangular fortress features walls up to 12 meters high, 16 or 17 burgs (12 surviving), and four gates. It has served as a defensive stronghold, royal palace, and community hub over centuries, and was rebuilt by Ottoman Sultan Mustafa III after 18th-century earthquake damage.",
+      "ar": "قلعة دمشق قصر وحصن محصّن من العصر الأيوبي في قلب دمشق. بُنيت بين القرنين الحادي عشر والثالث عشر، وهي جزء من مدينة دمشق القديمة المدرجة على قائمة اليونسكو. تتميز القلعة المستطيلة بجدران يصل ارتفاعها إلى 12 متراً، و16 أو 17 برجاً (منها 12 باقياً)، وأربعة أبواب. خدمت على مر القرون كحصن دفاعي وقصر ملكي ومركز مجتمعي، وأعاد بناءها السلطان العثماني مصطفى الثالث بعد أضرار زلزال القرن الثامن عشر."
     },
     "category": "historical",
-    "coordinate": { "lon": 36.293, "lat": 33.5115 },
-    "visitors": {
-      "annual": 320000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.302146, "lat": 33.511891 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Citadel_of_Damascus.jpg",
+      "alt": { "en": "The Citadel of Damascus", "ar": "قلعة دمشق" }
     },
     "bestTimeToVisit": {
-      "months": [3, 4, 5, 10, 11],
+      "months": [3, 4, 5, 9, 10, 11],
       "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Citadel_of_Damascus",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "dam-hamidiyah-souq",
     "governorateId": "SY01",
     "name": { "en": "Al-Hamidiyah Souq", "ar": "سوق الحميدية" },
     "description": {
-      "en": "A long covered market street leading from the old city toward the Umayyad Mosque.",
-      "ar": "شارع سوق مسقوف طويل يمتد من المدينة القديمة باتجاه الجامع الأموي."
+      "en": "Al-Hamidiyah Souq is the largest and central covered market in Syria, stretching about 600 meters inside the old walled city of Damascus next to the Citadel. Built in 1780 during the Ottoman era, it serves as the grand artery of Old Damascus, connecting Al-Thawra Street to the gates of the Umayyad Mosque. The bazaar is famous for traditional crafts, textiles, spices, and its vibrant atmosphere. It remains one of the oldest and largest covered markets in the Middle East.",
+      "ar": "سوق الحميدية أكبر وأهم الأسواق المسقوفة في سوريا، ويمتد نحو 600 متر داخل مدينة دمشق القديمة المسوّرة بجوار القلعة. بُني عام 1780 في العصر العثماني، ويُعد الشريان الكبير لدمشق القديمة، حيث يصل شارع الثورة بأبواب الجامع الأموي. يشتهر السوق بالحرف التقليدية والمنسوجات والتوابل وأجوائه النابضة بالحياة. ولا يزال من أقدم وأكبر الأسواق المسقوفة في الشرق الأوسط."
     },
     "category": "market",
-    "coordinate": { "lon": 36.3015, "lat": 33.5095 },
-    "visitors": {
-      "annual": 950000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.30083, "lat": 33.51083 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Al-Hamidiyah_Souq_02.jpg/960px-Al-Hamidiyah_Souq_02.jpg",
+      "alt": { "en": "The covered alley of Al-Hamidiyah Souq", "ar": "ممر سوق الحميدية المسقوف" }
     },
     "bestTimeToVisit": {
-      "months": [1, 2, 3, 4, 5, 10, 11, 12],
-      "label": {
-        "en": "Year-round; covered market stays shaded in summer",
-        "ar": "على مدار السنة؛ السوق المسقوف يبقى مظللاً في الصيف"
-      }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Al-Hamidiyah_Souq",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "dam-azm-palace",
     "governorateId": "SY01",
     "name": { "en": "Azm Palace", "ar": "قصر العظم" },
     "description": {
-      "en": "An 18th-century Ottoman-era residence in the old city, later adapted as a museum of Damascene life.",
-      "ar": "مقرّ سكني من العهد العثماني في القرن الثامن عشر، حُوّل لاحقًا إلى متحف للحياة الدمشقية."
+      "en": "Al-Azm Palace, also known as Azem Palace, is a masterpiece of 18th-century Islamic and Damascene architecture built in 1749 by Ottoman governor As'ad Pasha al-Azm. Located north of Al-Buzuriyah Souq near the Umayyad Mosque, it served as a private residence. The palace features ornate stone lattice windows, decorated arches, beautiful courtyards, and stunning gardens. It won the Aga Khan Award for Architecture in 1983 and now serves as part of the Syrian Museum of Arts and Popular Traditions.",
+      "ar": "قصر العظم تحفة من العمارة الإسلامية الدمشقية في القرن الثامن عشر، بناه الوالي العثماني أسعد باشا العظم عام 1749. يقع شمال سوق البزورية قرب الجامع الأموي، وكان مقراً سكنياً خاصاً. يتميز القصر بنوافذ حجرية مشبّكة مزخرفة وأقواس منقوشة وأفنية جميلة وحدائق ساحرة. نال جائزة آغا خان للعمارة عام 1983، ويُستخدم اليوم جزءاً من متحف الفنون والتقاليد الشعبية السوري."
     },
     "category": "museum",
-    "coordinate": { "lon": 36.296, "lat": 33.5108 },
-    "visitors": {
-      "annual": 180000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.3067, "lat": 33.5102 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Azem_Palace_02.jpg/960px-Azem_Palace_02.jpg",
+      "alt": { "en": "The Azm Palace courtyard", "ar": "فناء قصر العظم" }
     },
     "bestTimeToVisit": {
       "months": [3, 4, 5, 9, 10, 11],
       "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Al-Azm_Palace",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
-  },
-  {
-    "id": "ham-norias",
-    "governorateId": "SY05",
-    "name": { "en": "Norias of Hama", "ar": "نواعير حماة" },
-    "description": {
-      "en": "Historic wooden water wheels on the Orontes River, long used to lift water for irrigation.",
-      "ar": "عجلات مائية خشبية تاريخية على نهر العاصي، استُخدمت قديماً لرفع المياه للري."
-    },
-    "category": "landmark",
-    "coordinate": { "lon": 37.298, "lat": 35.313 },
-    "visitors": {
-      "annual": 240000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
-    },
-    "bestTimeToVisit": {
-      "months": [4, 5, 6],
-      "label": {
-        "en": "Late spring, when the Orontes runs high and the wheels turn",
-        "ar": "أواخر الربيع، حين يرتفع منسوب العاصي وتدور النواعير"
-      }
-    },
-    "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
-    },
-    "reviewedOn": "2026-07-15"
-  },
-  {
-    "id": "ham-citadel",
-    "governorateId": "SY05",
-    "name": { "en": "Hama Citadel", "ar": "قلعة حماة" },
-    "description": {
-      "en": "An archaeological mound and fortification site overlooking the Orontes River in central Hama.",
-      "ar": "تلّ أثري وموقع تحصيني مطلّ على نهر العاصي في مركز حماة."
-    },
-    "category": "historical",
-    "coordinate": { "lon": 37.305, "lat": 35.31 },
-    "visitors": {
-      "annual": 85000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
-    },
-    "bestTimeToVisit": {
-      "months": [3, 4, 5, 10, 11],
-      "label": {
-        "en": "Spring and autumn; the open mound offers little shade",
-        "ar": "الربيع والخريف؛ التلّ المكشوف قليل الظلّ"
-      }
-    },
-    "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
-    },
-    "reviewedOn": "2026-07-15"
-  },
-  {
-    "id": "ham-nuri-mosque",
-    "governorateId": "SY05",
-    "name": { "en": "Al-Nuri Mosque", "ar": "جامع النوري" },
-    "description": {
-      "en": "A central mosque in Hama associated with the city’s historic core.",
-      "ar": "مسجد رئيسي في حماة مرتبط بالنواة التاريخية للمدينة."
-    },
-    "category": "religious",
-    "coordinate": { "lon": 37.3, "lat": 35.308 },
-    "visitors": {
-      "annual": 110000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
-    },
-    "bestTimeToVisit": {
-      "months": [3, 4, 5, 9, 10, 11],
-      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
-    },
-    "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
-    },
-    "reviewedOn": "2026-07-15"
-  },
-  {
-    "id": "ham-museum",
-    "governorateId": "SY05",
-    "name": { "en": "Hama Museum", "ar": "متحف حماة" },
-    "description": {
-      "en": "A regional museum presenting artifacts from sites around Hama and the Orontes valley.",
-      "ar": "متحف إقليمي يعرض قطعاً أثرية من مواقع حماة ووادي العاصي."
-    },
-    "category": "museum",
-    "coordinate": { "lon": 37.302, "lat": 35.312 },
-    "visitors": {
-      "annual": 45000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
-    },
-    "bestTimeToVisit": {
-      "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "label": {
-        "en": "Year-round; indoor galleries suit the summer heat",
-        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لحرّ الصيف"
-      }
-    },
-    "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
-    },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "hom-khalid-mosque",
     "governorateId": "SY04",
     "name": { "en": "Khalid ibn al-Walid Mosque", "ar": "جامع خالد بن الوليد" },
     "description": {
-      "en": "A large mosque in Homs named after the early Islamic commander, with distinctive twin minarets.",
-      "ar": "مسجد كبير في حمص يحمل اسم القائد الإسلامي خالد بن الوليد، يتميّز بمئذنتيه التوأم."
+      "en": "The Khalid ibn al-Walid Mosque is a prominent mosque in Homs, Syria, located in a park along Hama Street in ash-Shuhada Square. Dedicated to Khalid ibn al-Walid, the Arab commander who led the Muslim conquest of Syria, it contains his dome-topped mausoleum. The current Ottoman-style building was completed in 1912, featuring two tall white stone minarets with alternating black and white bands, a large silver central dome, and Mamluk ablaq-style stonework in the courtyard. It is considered the second most important mosque in Syria.",
+      "ar": "جامع خالد بن الوليد مسجد بارز في حمص، يقع في حديقة على شارع حماة في ساحة الشهداء. خُصص للقائد العربي خالد بن الوليد الذي قاد الفتح الإسلامي لسوريا، ويضم ضريحه ذا القبة. اكتمل المبنى الحالي على الطراز العثماني عام 1912، ويتميز بمئذنتين طويلتين من الحجر الأبيض بشرائط سوداء وبيضاء متناوبة، وقبة مركزية فضية كبيرة، وأعمال حجرية على طراز الأبلق المملوكي في الفناء. يُعد ثاني أهم مسجد في سوريا."
     },
     "category": "religious",
-    "coordinate": { "lon": 38.209, "lat": 34.466 },
-    "visitors": {
-      "annual": 400000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.71559, "lat": 34.73678 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Homs_Khalid_Ibn_al-Walid_Mosque_3068.jpg/960px-Homs_Khalid_Ibn_al-Walid_Mosque_3068.jpg",
+      "alt": { "en": "The Khalid ibn al-Walid Mosque in Homs", "ar": "جامع خالد بن الوليد في حمص" }
     },
     "bestTimeToVisit": {
       "months": [3, 4, 5, 9, 10, 11],
       "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Khalid_ibn_al-Walid_Mosque",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "hom-citadel",
     "governorateId": "SY04",
     "name": { "en": "Homs Citadel", "ar": "قلعة حمص" },
     "description": {
-      "en": "A historic citadel mound within the city of Homs.",
-      "ar": "تلّ قلعة تاريخي داخل مدينة حمص."
+      "en": "The Citadel of Homs, also called Homs Castle or Qalaat Homs, is a historic building now mostly ruined in Homs, Syria. Built on an ancient tell southwest of the Old City with remains dating back to the 3rd millennium BCE, it was locally known as the Citadel of Usama. The site suffered massive demolition by Ibrahim Pasha's Egyptian army in the 1830s, followed by leveling during French Mandate use as a military base. It was only abandoned for military purposes in the late 1980s and passed to the Directorate-General of Antiquities and Museums.",
+      "ar": "قلعة حمص، وتسمى أيضاً قلعة أسامة أو قلعة حمص التاريخية، مبنى تاريخي صار في معظمه أطلالاً. بُنيت على تل قديم جنوب غرب المدينة القديمة، تعود بقاياه إلى الألفية الثالثة قبل الميلاد. تعرض الموقع لدمار واسع على يد جيش إبراهيم باشا المصري في ثلاثينيات القرن التاسع عشر، ثم سُوّي بالأرض حين استُخدم قاعدة عسكرية في عهد الانتداب الفرنسي. لم يُترك الاستخدام العسكري إلا في أواخر الثمانينيات، حين نُقلت القلعة إلى المديرية العامة للآثار والمتاحف."
     },
     "category": "historical",
-    "coordinate": { "lon": 38.205, "lat": 34.465 },
-    "visitors": {
-      "annual": 60000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.714371, "lat": 34.723807 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Homs_Citadel_1272.jpg/960px-Homs_Citadel_1272.jpg",
+      "alt": { "en": "The ruins of Homs Citadel", "ar": "أطلال قلعة حمص" }
     },
     "bestTimeToVisit": {
-      "months": [3, 4, 5, 10, 11],
-      "label": {
-        "en": "Spring and autumn; the open mound offers little shade",
-        "ar": "الربيع والخريف؛ التلّ المكشوف قليل الظلّ"
-      }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Citadel_of_Homs",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "hom-krak-des-chevaliers",
     "governorateId": "SY04",
     "name": { "en": "Krak des Chevaliers", "ar": "قلعة الحصن" },
     "description": {
-      "en": "A renowned Crusader-era fortress in the western Homs countryside, considered a major example of medieval military architecture.",
-      "ar": "قلعة صليبية شهيرة في ريف حمص الغربي، تُعدّ من أبرز نماذج العمارة العسكرية في العصور الوسطى."
+      "en": "Krak des Chevaliers is a medieval castle near Homs and one of the most important preserved medieval castles in the world. First inhabited in the 11th century, it was rebuilt by the Knights Hospitaller from 1142 to 1271. The concentric castle features an inner ward with a Gothic chapel, an outer wall with rounded towers, and a complex bent entrance corridor. It dominated the Homs Gap strategically and housed up to 2,000 soldiers at its peak. It is a UNESCO World Heritage Site since 2006, though partially damaged during the Syrian civil war.",
+      "ar": "قلعة الحصن قلعة من العصور الوسطى قرب حمص، ومن أهم القلاع المحفوظة في العالم. استُوطن الموقع أولاً في القرن الحادي عشر، وأعاد فرسان الإسبتارية بناءها بين عامَي 1142 و1271. تتميز القلعة المتراكزة بجناح داخلي يضم كنيسة قوطية، وسور خارجي بأبراج دائرية، وممر دخول معقّد ومنحنٍ. سيطرت استراتيجياً على ممر حمص، وضمت ما يصل إلى 2000 جندي في ذروتها. وهي موقع تراث عالمي لليونسكو منذ عام 2006، رغم تضررها جزئياً خلال الحرب الأهلية السورية."
     },
     "category": "historical",
-    "coordinate": { "lon": 36.2936, "lat": 34.6908 },
-    "visitors": {
-      "annual": 520000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.2947, "lat": 34.757 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Krak_des_Chevaliers.jpg/960px-Krak_des_Chevaliers.jpg",
+      "alt": { "en": "Krak des Chevaliers", "ar": "قلعة الحصن" }
     },
     "bestTimeToVisit": {
-      "months": [4, 5, 6, 9, 10],
-      "label": {
-        "en": "Spring and early autumn; hilltop fog and rain are common in winter",
-        "ar": "الربيع وأوائل الخريف؛ الضباب والمطر شائعان على القمة في الشتاء"
-      }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Krak_des_Chevaliers",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
-    "id": "hom-museum",
+    "id": "hom-saint-george-monastery",
     "governorateId": "SY04",
-    "name": { "en": "Homs Museum", "ar": "متحف حمص" },
+    "name": { "en": "Saint George Monastery", "ar": "دير مار جرجس" },
     "description": {
-      "en": "A museum holding artifacts from the Homs region and surrounding archaeological sites.",
-      "ar": "متحف يحوي قطعاً أثرية من منطقة حمص والمواقع الأثرية المحيطة بها."
+      "en": "Saint George Monastery, or Deir Mar Georges, is a historic Greek Orthodox monastery in the village of al-Mishtaya in the \"Valley of the Christians\" (Wadi al-Nasara), a few kilometers north of Krak des Chevaliers in the Homs Governorate. It is said to have been built over the remains of an ancient temple by Byzantine Emperor Justinian I in the 6th century. The monastery occupies 6,000 m² of land built from Byzantine-style stone; the modern church was rebuilt in 1857. It houses a 13th-century chapel, ancient icons, amphorae, and a manuscript attributed to Caliph Umar ibn al-Khattab. It is busiest during pilgrimages at the feast of Saint George (May 6) and the feast of the Elevation of the Holy Cross (September 14).",
+      "ar": "دير مار جرجس دير يوناني أرثوذكسي تاريخي في قرية المشتاية في وادي النصارى، على بُعد كيلومترات قليلة شمال قلعة الحصن في محافظة حمص. يُقال إنه بُني فوق بقايا معبد قديم على يد الإمبراطور البيزنطي جستنيان الأول في القرن السادس. يشغل الدير أرضاً مساحتها 6000 م² مبنية من الحجر البيزنطي، وأعيد بناء الكنيسة الحديثة عام 1857. يضم كنيسة صغيرة من القرن الثالث عشر وأيقونات قديمة وجراراً فخارية ومخطوطة منسوبة إلى الخليفة عمر بن الخطاب. ويشهد ذروة نشاطه خلال الحج في عيد مار جرجس (6 أيار) وعيد ارتفاع الصليب المقدس (14 أيلول)."
     },
-    "category": "museum",
-    "coordinate": { "lon": 38.21, "lat": 34.467 },
-    "visitors": {
-      "annual": 38000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "category": "religious",
+    "coordinate": { "lon": 36.267736, "lat": 34.767499 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Syria%2C_Homs%2C_Saint_George%27s_Monastery.jpg/960px-Syria%2C_Homs%2C_Saint_George%27s_Monastery.jpg",
+      "alt": { "en": "Saint George Monastery in Wadi al-Nasara", "ar": "دير مار جرجس في وادي النصارى" }
     },
     "bestTimeToVisit": {
-      "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "label": {
-        "en": "Year-round; indoor galleries suit the summer heat",
-        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لحرّ الصيف"
-      }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Saint_George%27s_Monastery,_Homs",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
-    "id": "lat-corniche",
-    "governorateId": "SY06",
-    "name": { "en": "Latakia Corniche", "ar": "كورنيش اللاذقية" },
+    "id": "ham-norias",
+    "governorateId": "SY05",
+    "name": { "en": "Norias of Hama", "ar": "نواعير حماة" },
     "description": {
-      "en": "A seafront promenade along the Mediterranean coast in the city of Latakia.",
-      "ar": "واجهة بحرية ممتدة على ساحل البحر المتوسط في مدينة اللاذقية."
+      "en": "The Norias of Hama are 17 historic water-raising machines along the Orontes River in Hama, Syria. These tall wooden water wheels with box-like compartments lift river water into aqueducts for irrigation. Notable for medieval origins, the largest is Noria al-Muhammadiya (1361 CE), 21 meters in diameter, which was the tallest waterwheel in the world for nearly 500 years. Today they serve as heritage attractions, celebrated for their striking sights and the powerful groaning sounds of their wooden axles.",
+      "ar": "نواعير حماة هي 17 آلة تاريخية لرفع المياه على نهر العاصي في حماة. هذه العجلات الخشبية الطويلة ذات الحجيرات الصندوقية ترفع مياه النهر إلى قنوات الري. وتعود أصولها إلى العصور الوسطى، وأكبرها ناعورة المحمدية (1361م) التي يبلغ قطرها 21 متراً، وظلت أعلى عجلة مائية في العالم لنحو 500 عام. وهي اليوم معالم تراثية تشتهر بمناظرها الخلابة وصوت صرير محاورها الخشبية القوي."
+    },
+    "category": "landmark",
+    "coordinate": { "lon": 36.753060, "lat": 35.135396 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Norias_of_Hama.jpg/960px-Norias_of_Hama.jpg",
+      "alt": { "en": "The norias of Hama on the Orontes River", "ar": "نواعير حماة على نهر العاصي" }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
+    "source": {
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Norias_of_Hama",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
+    },
+    "reviewedOn": "2026-08-04"
+  },
+  {
+    "id": "ham-citadel",
+    "governorateId": "SY05",
+    "name": { "en": "Hama Citadel", "ar": "قلعة حماة" },
+    "description": {
+      "en": "Hama Castle, also called Hama Citadel, is a mostly-ruined fortress in Hama, Syria, located on the Orontes River. The site dates back to the Seleucids and was later held by Romans, Qarmatians, Mirdasids, and Seljuks. It was devastated by the 1157 earthquake, rebuilt by Zengids and Ayyubids, then destroyed by Mongols in 1258. Sultan Baibars rebuilt it, but by the Ottoman era it had lost strategic value. Danish archaeologists excavated it between 1931 and 1938. Today it is largely a grassy hilltop park offering panoramic views.",
+      "ar": "قلعة حماة حصن شبه مدمر في حماة على نهر العاصي. يعود الموقع إلى العصر السلوقي، ثم تعاقب عليه الرومان والقرامطة والمرداسيون والسلاجقة. دمّره زلزال عام 1157، وأعاد بناءه الزنكيون والأيوبيون، ثم دمره المغول عام 1258. أعاد السلطان بيبرس بناءها، لكنها فقدت قيمتها الاستراتيجية في العصر العثماني. نقّب فيها علماء آثار دنماركيون بين عامَي 1931 و1938. وهي اليوم في معظمها متنزه على قمة تل عشبي يقدم إطلالات بانورامية."
+    },
+    "category": "historical",
+    "coordinate": { "lon": 36.75, "lat": 35.1365 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hama_city%2C_castle%2C_noria%2C_and_the_old_wall.jpg/960px-Hama_city%2C_castle%2C_noria%2C_and_the_old_wall.jpg",
+      "alt": { "en": "Hama, its citadel hill, norias and old wall", "ar": "حماة وتل القلعة والنواعير والسور القديم" }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
+    "source": {
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Hama_Castle",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
+    },
+    "reviewedOn": "2026-08-04"
+  },
+  {
+    "id": "ham-masyaf-castle",
+    "governorateId": "SY05",
+    "name": { "en": "Masyaf Castle", "ar": "قلعة مصياف" },
+    "description": {
+      "en": "Masyaf Castle is a medieval fortress in Masyaf, Hama Governorate, about 40 km west of Hama in the Orontes Valley. It served as the stronghold of Rashid ad-Din Sinan, the Old Man of the Mountain, leader of the Nizari Ismaili Assassins from 1166 to 1193. The castle stands on a 20-meter platform controlling trade routes. Lower foundations are Byzantine; most current remains date to the 12th-century Nizari phase. It was captured by Mongols in 1260, reclaimed with Mamluks, then taken by Baibars in 1270. Restoration began in 2000.",
+      "ar": "قلعة مصياف حصن من العصور الوسطى في مصياف بمحافظة حماة، على بُعد نحو 40 كم غرب حماة في وادي العاصي. كانت معقل رشيد الدين سنان، شيخ الجبل، زعيم الحشاشين الإسماعيليين النزاريين من 1166 إلى 1193. تقوم القلعة على مصطبة ارتفاعها 20 متراً تسيطر على طرق التجارة. أساساتها السفلى بيزنطية، ومعظم بقاياها الحالية تعود إلى مرحلة النزاريين في القرن الثاني عشر. استولى عليها المغول عام 1260، ثم استُعيدت مع المماليك، وانتزعها بيبرس عام 1270. بدأت أعمال الترميم عام 2000."
+    },
+    "category": "historical",
+    "coordinate": { "lon": 36.3433130, "lat": 35.0662424 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Masyaf_Castle.jpg/960px-Masyaf_Castle.jpg",
+      "alt": { "en": "Masyaf Castle", "ar": "قلعة مصياف" }
+    },
+    "bestTimeToVisit": {
+      "months": [4, 5, 6, 7, 8, 9],
+      "label": { "en": "Spring to early autumn", "ar": "من الربيع إلى أوائل الخريف" }
+    },
+    "source": {
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Masyaf_Castle",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
+    },
+    "reviewedOn": "2026-08-04"
+  },
+  {
+    "id": "ham-wadi-al-uyun",
+    "governorateId": "SY05",
+    "name": { "en": "Wadi al-Uyun", "ar": "وادي العيون" },
+    "description": {
+      "en": "Wadi al-Uyun, meaning Valley of the Springs, is a town in northwestern Syria in Hama Governorate, west of Hama. It is a popular tourist attraction known for its scenic springs, waterfalls, and green algae-covered rocks that give it the nickname Green Hat. Visitors can play in the waterfalls and climb the rocks, a distinguishing feature compared to similar sites. The valley spreads over a large east-west area with elevations between 450 and 900 meters, abundant in mulberry orchards and scattered houses on escarpments.",
+      "ar": "وادي العيون، أي وادي الينابيع، بلدة في شمال غرب سوريا في محافظة حماة، غرب مدينة حماة. وهي وجهة سياحية شهيرة تشتهر بينابيعها الخلابة وشلالاتها وصخورها المكسوة بالطحالب الخضراء التي أكسبتها لقب «القبعة الخضراء». يمكن للزوار اللعب في الشلالات وتسلق الصخور، وهي ميزة تميزها عن المواقع المماثلة. يمتد الوادي على مساحة كبيرة من الشرق إلى الغرب بارتفاعات تتراوح بين 450 و900 متر، وتكثر فيه بساتين التوت والبيوت المتناثرة على المنحدرات."
     },
     "category": "nature",
-    "coordinate": { "lon": 35.99, "lat": 35.58 },
-    "visitors": {
-      "annual": 780000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 36.7155574, "lat":  34.7367821 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Wadi_Al_%27Uyun.jpg/960px-Wadi_Al_%27Uyun.jpg",
+      "alt": { "en": "Springs of Wadi al-Uyun", "ar": "ينابيع وادي العيون" }
     },
     "bestTimeToVisit": {
-      "months": [6, 7, 8, 9],
-      "label": { "en": "Summer, the peak coastal season", "ar": "الصيف، ذروة الموسم الساحلي" }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Wadi_al-Uyun",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
+  },
+  {
+    "id": "lat-umm-al-tuyour",
+    "governorateId": "SY06",
+    "name": { "en": "Umm al-Tuyour", "ar": "أم الطيور" },
+    "description": {
+      "en": "Umm al-Tuyour is a town in northwestern Syria, administratively part of the Latakia Governorate, located north of Latakia on the Mediterranean coast. It is a coastal protected area combining pine forest with marine and shoreline habitat. The town had a population of 1,101 in the 2004 census, with inhabitants predominantly of Turkmen origin. Nearby localities include Al-Shamiyah, Burj Islam, Ras al-Basit, and al-Badrusiyah. It is known for its beautiful beaches and natural scenery along Syria's coast.",
+      "ar": "أم الطيور بلدة في شمال غرب سوريا، تتبع إدارياً لمحافظة اللاذقية، وتقع شمال اللاذقية على ساحل البحر المتوسط. وهي منطقة محمية ساحلية تجمع بين غابة الصنوبر والموائل البحرية والساحلية. بلغ عدد سكانها 1101 نسمة في تعداد عام 2004، ومعظم سكانها من أصول تركمانية. من القرى المجاورة: الشامية وبرج إسلام ورأس البسيط والبدروسية. وتشتهر بشواطئها الجميلة ومناظرها الطبيعية على الساحل السوري."
+    },
+    "category": "nature",
+    "coordinate": { "lon": 35.846623, "lat": 35.754836 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Burj_Islam_Latakia.jpg/960px-Burj_Islam_Latakia.jpg",
+      "alt": { "en": "Coastal view near Umm al-Tuyour", "ar": "منظر ساحلي قرب أم الطيور" }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "label": { "en": "Spring through autumn", "ar": "من الربيع حتى الخريف" }
+    },
+    "source": {
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Umm_al-Tuyour,_Latakia_Governorate",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
+    },
+    "reviewedOn": "2026-08-04"
+  },
+  {
+    "id": "lat-tetraporticus",
+    "governorateId": "SY06",
+    "name": { "en": "Latakia Tetraporticus", "ar": "رباعية الأقواس في اللاذقية" },
+    "description": {
+      "en": "The Latakia Tetraporticus, also called the Triumphal Arch of Septimius Severus, is a triumphal arch in modern-day Latakia, Syria, in the Port Said street area. Built around 183 AD in honor of Roman emperor Septimius Severus, it stands 9.1 to 12.2 meters high with four doorways. Its sturdy cubic shape helped it survive earthquakes that damaged much of the ancient city. It is considered a symbol of Latakia and stands in the center of a public park.",
+      "ar": "رباعية الأقواس في اللاذقية، وتسمى أيضاً قوس النصر لسبتيموس سيفيروس، قوس نصر في اللاذقية الحديثة بمنطقة شارع بورسعيد. بُني نحو عام 183 ميلادية تكريماً للإمبراطور الروماني سبتيموس سيفيروس، ويبلغ ارتفاعه بين 9.1 و12.2 متراً وله أربعة مداخل. ساعد شكله المكعب المتين على صموده أمام الزلازل التي أضرت بجزء كبير من المدينة القديمة. ويُعد رمزاً للاذقية، ويقف اليوم في وسط حديقة عامة."
+    },
+    "category": "historical",
+    "coordinate": { "lon": 35.78193020674709, "lat": 35.51414582564241 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Latakia_Tetraporticus_4035.jpg/960px-Latakia_Tetraporticus_4035.jpg",
+      "alt": { "en": "The Tetraporticus arch in Latakia", "ar": "قوس رباعية الأقواس في اللاذقية" }
+    },
+    "bestTimeToVisit": {
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
+    },
+    "source": {
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Latakia_Tetraporticus",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
+    },
+    "reviewedOn": "2026-08-04"
   },
   {
     "id": "lat-ugarit",
     "governorateId": "SY06",
     "name": { "en": "Ugarit (Ras Shamra)", "ar": "أوغاريت (رأس شمرة)" },
     "description": {
-      "en": "The archaeological site of an ancient coastal city, significant for early alphabetic writing.",
-      "ar": "موقع أثري لمدينة ساحلية قديمة، ذات أهمية كبرى في تاريخ الكتابة الأبجدية المبكرة."
+      "en": "Ugarit was an ancient Levantine coastal city located 10 km north of Latakia at Ras Shamra. Occupied since the 8th millennium BC, it flourished during the Late Bronze Age (c. 1500–1200 BC) as the Kingdom of Ugarit. The site revealed the oldest known systematic alphabet—Ugaritic texts written in a previously unknown Northwest Semitic language. Excavations since 1928 uncovered temples, a royal palace, and thousands of cuneiform tablets. It was destroyed around 1185 BC during the Bronze Age Collapse.",
+      "ar": "أوغاريت مدينة ساحلية قديمة في بلاد الشام، تبعد 10 كم شمال اللاذقية في رأس شمرة. استُوطن الموقع منذ الألفية الثامنة قبل الميلاد، وازدهر في العصر البرونزي المتأخر (نحو 1500–1200 ق.م) كمملكة أوغاريت. كشف الموقع عن أقدم أبجدية منظمة معروفة — نصوص أوغاريتية بلغة سامية شمالية غربية لم تكن معروفة سابقاً. كشفت الحفريات منذ عام 1928 عن معابد وقصر ملكي وآلاف الألواح المسمارية. ودُمرت المدينة نحو عام 1185 ق.م أثناء انهيار العصر البرونزي."
     },
     "category": "archaeology",
-    "coordinate": { "lon": 35.945, "lat": 35.598 },
-    "visitors": {
-      "annual": 95000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "coordinate": { "lon": 35.782, "lat": 35.602 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ugarit_ras_shamra.jpg/960px-Ugarit_ras_shamra.jpg",
+      "alt": { "en": "The archaeological site of Ugarit", "ar": "الموقع الأثري لأوغاريت" }
     },
     "bestTimeToVisit": {
-      "months": [4, 5, 9, 10, 11],
-      "label": {
-        "en": "Spring and autumn; the excavation site is exposed and humid in summer",
-        "ar": "الربيع والخريف؛ الموقع الأثري مكشوف ورطب في الصيف"
-      }
+      "months": [3, 4, 5, 9, 10, 11],
+      "label": { "en": "Spring and autumn", "ar": "الربيع والخريف" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Ugarit",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   },
   {
-    "id": "lat-museum",
+    "id": "lat-slinfah",
     "governorateId": "SY06",
-    "name": { "en": "Latakia Museum", "ar": "متحف اللاذقية" },
+    "name": { "en": "Slinfah", "ar": "صلنفة" },
     "description": {
-      "en": "A regional museum presenting artifacts from Latakia and the surrounding coast.",
-      "ar": "متحف إقليمي يعرض قطعاً أثرية من اللاذقية والساحل المحيط بها."
+      "en": "Slinfah is a Syrian town-resort founded in 1929, located 50 km east of Latakia at 1,130 meters elevation in the An-Nusayriyah Mountains. With mild summers and cold snowy winters, it is a popular destination for Syrians. The town's highest point is the peak of Prophet Yunis at 1,300 meters. Nearby are 500 hectares of fir-covered mountains. The historical Citadel of Salah Ed-Din is only 13 km west. It has a warm temperate climate with about 1,282 mm of annual precipitation.",
+      "ar": "صلنفة بلدة-منتجع سورية تأسست عام 1929، تبعد 50 كم شرق اللاذقية على ارتفاع 1130 متراً في جبال النصيرية. بفضل صيفها المعتدل وشتائها البارد المثلج، تُعد وجهة شعبية للسوريين. أعلى نقطة في البلدة قمة النبي يونس على ارتفاع 1300 متر. تحيط بها نحو 500 هكتار من الجبال المكسوة بأشجار التنوب. وتقع قلعة صلاح الدين التاريخية على بُعد 13 كم فقط غرباً. مناخها معتدل دافئ مع هطول سنوي يبلغ نحو 1282 ملم."
     },
-    "category": "museum",
-    "coordinate": { "lon": 35.988, "lat": 35.58 },
-    "visitors": {
-      "annual": 32000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
+    "category": "nature",
+    "coordinate": { "lon": 36.17861, "lat": 35.60028 },
+    "image": {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Slinfah_P1013409mod.jpg/960px-Slinfah_P1013409mod.jpg",
+      "alt": { "en": "Mountain scenery in Slinfah", "ar": "المناظر الجبلية في صلنفة" }
     },
     "bestTimeToVisit": {
       "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "label": {
-        "en": "Year-round; indoor galleries suit the humid coastal summer",
-        "ar": "على مدار السنة؛ القاعات الداخلية مناسبة لصيف الساحل الرطب"
-      }
+      "label": { "en": "Year-round resort", "ar": "منتجع على مدار السنة" }
     },
     "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
+      "label": { "en": "Wikipedia — curated content", "ar": "ويكيبيديا — محتوى منقّح" },
+      "url": "https://en.wikipedia.org/wiki/Slinfah",
+      "note": "Curated from Wikipedia; image from Wikimedia Commons."
     },
-    "reviewedOn": "2026-07-15"
-  },
-  {
-    "id": "lat-ras-ibn-hani",
-    "governorateId": "SY06",
-    "name": { "en": "Ras Ibn Hani", "ar": "رأس ابن هاني" },
-    "description": {
-      "en": "A coastal archaeological site near Latakia with remains from several historical periods.",
-      "ar": "موقع أثري ساحلي قرب اللاذقية يحوي بقايا من فترات تاريخية متعددة."
-    },
-    "category": "archaeology",
-    "coordinate": { "lon": 35.92, "lat": 35.62 },
-    "visitors": {
-      "annual": 41000,
-      "confidence": "provisional",
-      "note": {
-        "en": "Provisional placeholder figure — pending editorial review",
-        "ar": "رقم تقديري مؤقت — بانتظار المراجعة التحريرية"
-      }
-    },
-    "bestTimeToVisit": {
-      "months": [4, 5, 9, 10, 11],
-      "label": {
-        "en": "Spring and autumn; the coastal site is exposed at midday",
-        "ar": "الربيع والخريف؛ الموقع الساحلي مكشوف عند الظهيرة"
-      }
-    },
-    "source": {
-      "label": {
-        "en": "Representative seed data — pending editorial review",
-        "ar": "بيانات أولية تمهيدية — بانتظار المراجعة التحريرية"
-      },
-      "note": "Coordinates approximate; replace with approved curated content before release."
-    },
-    "reviewedOn": "2026-07-15"
+    "reviewedOn": "2026-08-04"
   }
 ]
