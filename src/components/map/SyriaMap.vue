@@ -61,6 +61,8 @@ const mapRootEl = useTemplateRef<HTMLDivElement>('mapRootEl')
 let map: OlMap | null = null
 let governorateLayer: VectorLayer | null = null
 let governorateSource: VectorSource | null = null
+let governorateLabelLayer: VectorLayer | null = null
+let governorateLabelSource: VectorSource | null = null
 let markerLayer: VectorLayer | null = null
 let markerSource: VectorSource | null = null
 let resizeObserver: ResizeObserver | null = null
@@ -127,8 +129,16 @@ function governorateStyle(feature: FeatureLike): Style {
       color: isSelected ? MAP_COLORS.primary : MAP_COLORS.outline,
       width: isSelected ? 2.5 : 1,
     }),
+  })
+}
+
+function governorateLabelStyle(feature: FeatureLike): Style {
+  const pcode = feature.get('adm1_pcode') as string | undefined
+  const governorate = pcode ? govByPcode.get(pcode) : undefined
+
+  return new Style({
     text: new Text({
-      text: gov ? gov.name[locale.value] : (pcode ?? ''),
+      text: governorate ? governorate.name[locale.value] : (pcode ?? ''),
       font: '600 13px system-ui, sans-serif',
       fill: new Fill({ color: MAP_COLORS.onSurface }),
       stroke: new Stroke({ color: 'rgba(255, 255, 255, 0.85)', width: 3 }),
@@ -323,6 +333,22 @@ onMounted(() => {
   governorateSource = new VectorSource()
   governorateLayer = new VectorLayer({ source: governorateSource, style: governorateStyle })
 
+  governorateLabelSource = new VectorSource({
+    features: governorates.map((governorate) => {
+      const feature = new Feature({
+        geometry: new Point(fromLonLat([governorate.center.lon, governorate.center.lat])),
+        adm1_pcode: governorate.pcode,
+      })
+      feature.setId(`label-${governorate.pcode}`)
+      return feature
+    }),
+  })
+  governorateLabelLayer = new VectorLayer({
+    source: governorateLabelSource,
+    style: governorateLabelStyle,
+    declutter: true,
+  })
+
   markerSource = new VectorSource()
   markerLayer = new VectorLayer({ source: markerSource, style: markerStyle })
 
@@ -338,7 +364,7 @@ onMounted(() => {
   map = new OlMap({
     target: mapEl.value ?? undefined,
     controls: [],
-    layers: [osmLayer, governorateLayer, markerLayer],
+    layers: [osmLayer, governorateLayer, governorateLabelLayer, markerLayer],
     view: new View({ center: fromLonLat([38, 35]), zoom: 6 }),
   })
 
@@ -396,6 +422,8 @@ onBeforeUnmount(() => {
   }
   governorateLayer = null
   governorateSource = null
+  governorateLabelLayer = null
+  governorateLabelSource = null
   markerLayer = null
   markerSource = null
 })
@@ -405,7 +433,10 @@ onBeforeUnmount(() => {
 // ---------------------------------------------------------------------------
 watch(
   () => [selectedGovernorateId.value, hoverGovernorateId.value, locale.value],
-  () => governorateLayer?.changed(),
+  () => {
+    governorateLayer?.changed()
+    governorateLabelLayer?.changed()
+  },
 )
 
 watch(selectedAttractionId, () => markerLayer?.changed())
