@@ -51,7 +51,14 @@ const areaText = computed(() =>
           :data-attraction-id="attraction.id"
           @click="selectAttraction(attraction.id)"
         >
-          <AtlasPlaceholder compact :label="t('a11y.decorativePlaceholder')" />
+          <img
+            v-if="attraction.image"
+            class="tirhal-attraction-item__thumb"
+            :src="attraction.image.src"
+            :alt="localized(attraction.image.alt, locale)"
+            loading="lazy"
+          />
+          <AtlasPlaceholder v-else compact :label="t('a11y.decorativePlaceholder')" />
           <span class="tirhal-attraction-item__copy">
             <span class="tirhal-attraction-item__cat">{{
               t(`categories.${attraction.category}`)
