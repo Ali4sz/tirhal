@@ -43,6 +43,11 @@ export function getGovernorateById(id: GovernorateId): Governorate | undefined {
   return governorateById.get(id)
 }
 
+/** All attractions, in dataset order. */
+export function getAttractions(): readonly Attraction[] {
+  return attractions
+}
+
 /** Attractions belonging to a governorate (empty if none or unknown id). */
 export function getAttractionsByGovernorate(id: GovernorateId): readonly Attraction[] {
   return attractions.filter((attraction) => attraction.governorateId === id)
