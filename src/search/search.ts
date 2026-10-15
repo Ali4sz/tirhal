@@ -66,11 +66,7 @@ function withinEditDistance(source: string, target: string, max: number): boolea
       const diagonal = previous[j - 1] ?? Number.POSITIVE_INFINITY
       const above = previous[j] ?? Number.POSITIVE_INFINITY
       const left = current[j - 1] ?? Number.POSITIVE_INFINITY
-      let best = Math.min(
-        diagonal + (source[i - 1] === target[j - 1] ? 0 : 1),
-        above + 1,
-        left + 1,
-      )
+      let best = Math.min(diagonal + (source[i - 1] === target[j - 1] ? 0 : 1), above + 1, left + 1)
       if (i > 1 && j > 1 && source[i - 1] === target[j - 2] && source[i - 2] === target[j - 1]) {
         const transposed = (twoBefore?.[j - 2] ?? Number.POSITIVE_INFINITY) + 1
         best = Math.min(best, transposed)

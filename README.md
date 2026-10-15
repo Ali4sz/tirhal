@@ -36,6 +36,11 @@ you can take a look at [Tirhal](https://tirhal.ali6s.workers.dev/)
 - 📍 **Governorate boundaries** rendered above the base map
 - 🖱️ **Click-based exploration**
   - Click on a governorate to view attractions within it
+- 🔍 **Fuzzy attraction search**
+  - Floating search bar over the map
+  - Bilingual matching across English and Arabic names and category keywords
+  - Typo tolerant in both scripts (misspellings, unvocalized Arabic)
+  - Results open the attraction story and center the map
 - 🏛️ **Attraction details**
   - Names
   - Locations
@@ -279,7 +284,6 @@ Since Tirhal is still a proof of concept, it currently has a few limitations:
 
 - The attractions dataset is limited
 - Attraction data is manually collected
-- There is no search functionality yet
 - There are no advanced filters yet
 - The project is intended primarily as a demonstration
 - Governorate boundaries are derived from OpenStreetMap and may not always be perfect
@@ -290,7 +294,7 @@ Since Tirhal is still a proof of concept, it currently has a few limitations:
 
 Planned or possible future improvements include:
 
-- [ ] A **search bar**
+- [x] A **search bar**
 - [ ] **Filtering** for attractions by type
 - [ ] Expand the attractions dataset
 - [ ] Improve attraction detail pages
