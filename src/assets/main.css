@@ -1868,6 +1868,190 @@ a {
   font-size: 0.68rem;
 }
 
+/* ----------------------------------------------------------------------------
+   Search bar (SearchBar) — floating combobox pill in the map chrome
+   -------------------------------------------------------------------------- */
+/* Header group: brand and search share the floating top row. Wrapping lets
+   the search pill drop below the brand on narrow viewports instead of ever
+   drifting toward the inline-end map controls. */
+.tirhal-app__header-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-inline-size: 100%;
+}
+
+.tirhal-search {
+  position: relative;
+  /* Definite desktop width — never a percentage. A `min(22rem, 100%)` pill
+     inside the shrink-to-fit header group makes the group's intrinsic width
+     depend on its own content (percentage of an indefinite size), which
+     collapses to the input's intrinsic width and forces a premature wrap. */
+  inline-size: 22rem;
+}
+
+/* Tablet band (600–768px): this range inherits the legacy mobile placement of
+   the map controls (block-start: 4rem) — exactly the band where the results
+   dropdown opens — so the pill reserves their inline-end column. This block
+   must stay AFTER the base rule above: media queries add no specificity, so
+   an earlier-placed cap would be overridden by the base width. */
+@media (min-width: 600px) and (max-width: 768px) {
+  .tirhal-search {
+    inline-size: min(20rem, calc(100vw - 5.75rem));
+  }
+}
+
+.tirhal-search__field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-block-size: 2.75rem;
+  padding-inline: 1rem;
+  color: var(--tirhal-color-ink);
+  background: rgba(255, 250, 241, 0.82);
+  border: 1px solid rgba(127, 50, 31, 0.14);
+  border-radius: var(--md-sys-shape-corner-full);
+  box-shadow: var(--tirhal-shadow-control);
+  backdrop-filter: blur(10px);
+  transition:
+    border-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+/* The pill, not the bare input, carries the focus treatment. */
+.tirhal-search__field:focus-within {
+  border-color: var(--md-sys-color-primary);
+  box-shadow:
+    0 0 0 3px rgba(199, 91, 57, 0.16),
+    var(--tirhal-shadow-control);
+}
+
+.tirhal-search__icon {
+  flex: 0 0 auto;
+  inline-size: 1rem;
+  block-size: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  opacity: 0.7;
+}
+
+.tirhal-search__input {
+  flex: 1;
+  min-inline-size: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  /* Never below 1rem: iOS Safari zooms the viewport on focus otherwise. */
+  font-size: 1rem;
+  color: inherit;
+}
+
+.tirhal-search__input::placeholder {
+  color: var(--tirhal-color-ink-soft);
+  opacity: 0.8;
+}
+
+/* The field pill shows the ring; the raw input itself stays outline-free. */
+.tirhal-search__input:focus-visible {
+  outline: none;
+}
+
+.tirhal-search__clear {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  inline-size: 1.6rem;
+  block-size: 1.6rem;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: transparent;
+  color: var(--tirhal-color-ink-soft);
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short)
+    var(--md-sys-motion-easing-standard);
+}
+
+.tirhal-search__clear:hover {
+  background-color: rgba(127, 50, 31, 0.08);
+}
+
+.tirhal-search__clear svg {
+  inline-size: 0.85rem;
+  block-size: 0.85rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Results dropdown — mirrors the anchored-popover pattern of the locale
+   switcher, but opens downward from the top chrome. */
+.tirhal-search__popover {
+  position: absolute;
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline-start: 0;
+  inline-size: 100%;
+  min-inline-size: 16rem;
+  max-block-size: min(24rem, 60dvh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.45rem;
+  background: rgba(255, 250, 241, 0.96);
+  border: 1px solid rgba(127, 50, 31, 0.13);
+  border-radius: 1rem;
+  box-shadow: var(--tirhal-shadow-float);
+  backdrop-filter: blur(16px);
+  z-index: var(--tirhal-z-popover);
+}
+
+.tirhal-search__results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tirhal-search__option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.tirhal-search__option--active {
+  background-color: rgba(250, 217, 199, 0.58);
+}
+
+.tirhal-search__option-name {
+  font-weight: 600;
+  color: var(--tirhal-color-ink);
+}
+
+.tirhal-search__option-meta {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--md-sys-color-primary);
+}
+
+[dir='rtl'] .tirhal-search__option-meta {
+  letter-spacing: 0;
+}
+
+.tirhal-search__empty {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--tirhal-color-ink-soft);
+}
+
 .tirhal-story-enter-active,
 .tirhal-story-leave-active {
   transition:
@@ -2035,6 +2219,18 @@ a {
   .tirhal-map-controls {
     inset-block-start: 5rem;
     inset-inline-end: 0.75rem;
+  }
+
+  /* The wrapped search pill sits in the same band as the map controls on the
+     opposite (inline-start) side; cap its width so the two never underlap. */
+  .tirhal-search {
+    inline-size: min(20rem, calc(100vw - 5.75rem));
+  }
+
+  /* The desktop-oriented dropdown minimum can exceed the capped pill and
+     underlap the controls on the narrowest phones; the pill width wins. */
+  .tirhal-search__popover {
+    min-inline-size: 0;
   }
 
   .tirhal-map-control-btn {
