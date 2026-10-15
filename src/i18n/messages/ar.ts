@@ -28,6 +28,13 @@ const ar: MessageSchema = {
     hover: 'تمرير فوق: {name}',
     selected: 'محدد: {name}',
   },
+  search: {
+    label: 'البحث عن معالم',
+    placeholder: 'ابحث عن معلم…',
+    clear: 'مسح البحث',
+    noResults: 'لا توجد معالم مطابقة.',
+    resultsLabel: 'النتائج: {count}',
+  },
   panel: {
     sheet: {
       explore: 'استكشف',

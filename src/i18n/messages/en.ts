@@ -30,6 +30,13 @@ const en = {
     hover: 'Hovering: {name}',
     selected: 'Selected: {name}',
   },
+  search: {
+    label: 'Search attractions',
+    placeholder: 'Search attractions…',
+    clear: 'Clear search',
+    noResults: 'No attractions found.',
+    resultsLabel: 'Results: {count}',
+  },
   panel: {
     sheet: {
       explore: 'Explore',
